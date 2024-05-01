@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmhmwd6jnqatf"]
+
+[ext_resource type="PackedScene" uid="uid://bbf161rho30d0" path="res://map.tscn" id="1_0ka7u"]
+[ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player.tscn" id="2_012hh"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_0ka7u")]
+
+[node name="Player" parent="." instance=ExtResource("2_012hh")]
+position = Vector2(-3, -190)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 263)
+position_smoothing_enabled = true
+position_smoothing_speed = 12.0

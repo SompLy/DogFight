@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://banl63ixyoheq"]
+
+[ext_resource type="Script" path="res://player.cs" id="1_ccjs0"]
+[ext_resource type="Texture2D" uid="uid://dlu2p4skf5yct" path="res://assets/sprites/Player_Dog.png" id="1_ruu7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avy51"]
+size = Vector2(15, 12)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ccjs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ruu7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_avy51")
