@@ -5,16 +5,15 @@ using System.Net.Mime;
 
 public partial class Map : Node2D
 {
-	private Sprite2D fg;
-	private Sprite2D bg;
-	private List<float> line = new List<float>();
+	private Sprite2D	   fg;
+	private Sprite2D	   bg;
+	private List<float>	   line		   = new List<float>();
 	private readonly Color TRANSPARENT = new Color(0, 0, 0, 0);
 
 	public override void _Ready()
 	{
-		GD.Print("It's Working :)");
 		fg = GetNode<Sprite2D>("FG");
-		//bg = GetNode<Sprite2D>("BG");
+		bg = GetNode<Sprite2D>("BG");
 		_GenerateMap();
 		GetNode<Collision>("Collision").InitMap(line);
 	}
@@ -33,7 +32,7 @@ public partial class Map : Node2D
 		noise.NoiseType = FastNoiseLite.NoiseTypeEnum.Simplex;
 		
 		Image fgImage = fg.Texture.GetImage();
-		//Image bgImage = bg.Texture.GetImage();
+		Image bgImage = bg.Texture.GetImage();
 
 		for (int x = 0; x < fgImage.GetWidth(); x++)
 		{
@@ -44,12 +43,12 @@ public partial class Map : Node2D
 			for (int y = 0; y < high; y++)
 			{
 				fgImage.SetPixel(x, y, TRANSPARENT);
-				//bgImage.SetPixel(x, y, TRANSPARENT);
+				bgImage.SetPixel(x, y, TRANSPARENT);
 			}
 		}
 		
 		fg.Texture = ImageTexture.CreateFromImage(fgImage);
-		//bgTexture.SetData(bgImage);
+		bg.Texture = ImageTexture.CreateFromImage(bgImage);
 	}
 
 	// public void Explosion(Vector2 pos, int radius)

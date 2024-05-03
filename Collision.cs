@@ -14,7 +14,7 @@ public partial class Collision : Node
 		InitMap( new List<float>() );
 	}
 
-	public void InitMap( List<float> line )
+	public void InitMap( List<float> line, )
 	{
 		for ( int x = 0; x < WIDTH; x++ )
 		{

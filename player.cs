@@ -24,6 +24,11 @@ public partial class player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		GD.Print("X: " +
+				 Position.X.ToString() +
+				 ", Y: " +
+				 Position.Y.ToString() +
+				 "\n");
 		Vector2 validPos;
 		if ( Jump > 0 )
 		{
@@ -47,6 +52,11 @@ public partial class player : CharacterBody2D
 		var walk = JumpDir; // set walk to jumpDir in case we are falling
 		if (GetNode<Map>("../Map").CollisionNormal(Position + new Vector2(0, 1)) != Vector2.Zero)
 		{
+			// GD.Print("X: " +
+			// 	GetNode<Map>("../Map").CollisionNormal(Position ).X.ToString() +
+			// 		", Y: " +
+			// 		 GetNode<Map>("../Map").CollisionNormal(Position ).Y.ToString() +
+			// 	"\n");
 			// the pixel below us is solid.
 			JumpDir = 0; // reset jumpDir (we're not jumping)
 			if (Input.IsActionJustPressed("Up"))
@@ -73,5 +83,7 @@ public partial class player : CharacterBody2D
 			}
 		}
 		Position = validPos;
+
+		Position += GetNode<Map>("../Map").CollisionNormal(Position);
 	}
 }

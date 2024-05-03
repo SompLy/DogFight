@@ -7,7 +7,12 @@
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ddjp6")
 
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(501, 251)
+texture = ExtResource("2_jjspj")
+
 [node name="FG" type="Sprite2D" parent="."]
+position = Vector2(502, 252)
 texture = ExtResource("2_jjspj")
 
 [node name="Collision" type="Node" parent="."]
