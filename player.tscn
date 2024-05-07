@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://banl63ixyoheq"]
 
-[ext_resource type="Script" path="res://player.cs" id="1_ccjs0"]
+[ext_resource type="Script" path="res://assets/scripts/Player.cs" id="1_ccjs0"]
 [ext_resource type="Texture2D" uid="uid://dlu2p4skf5yct" path="res://assets/sprites/Player_Dog.png" id="1_ruu7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avy51"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlu2p4skf5yct"
-path="res://.godot/imported/Player_Dog.png-a900c8cbe9086e0a064a8f7e4c6b00d3.ctex"
+uid="uid://0rpxj1gfir1h"
+path="res://.godot/imported/Weapon_Granade.png-a0323ce3d29fbddec31b0a7d203fc7b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Player_Dog.png"
-dest_files=["res://.godot/imported/Player_Dog.png-a900c8cbe9086e0a064a8f7e4c6b00d3.ctex"]
+source_file="res://assets/sprites/Weapon_Granade.png"
+dest_files=["res://.godot/imported/Weapon_Granade.png-a0323ce3d29fbddec31b0a7d203fc7b3.ctex"]
 
 [params]
 

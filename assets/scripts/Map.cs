@@ -15,7 +15,7 @@ public partial class Map : Node2D
 		fg = GetNode<Sprite2D>("FG");
 		bg = GetNode<Sprite2D>("BG");
 		_GenerateMap();
-		GetNode<Collision>("Collision").InitMap(line);
+		GetNode<Collision>("Collision").InitMap(line, fg.Texture.GetWidth(), fg.Texture.GetHeight());
 	}
 
 	public Vector2 CollisionNormal(Vector2 pos)
@@ -51,31 +51,28 @@ public partial class Map : Node2D
 		bg.Texture = ImageTexture.CreateFromImage(bgImage);
 	}
 
-	// public void Explosion(Vector2 pos, int radius)
-	// {
-	// 	GetNode<Collision>("Collision").Explosion(pos, radius);
-	//
-	// 	ImageTexture fgTexture = (ImageTexture)fg.Texture;
-	// 	Image fgImage = fgTexture.GetImage();
-	// 	//fgImage.Lock();
-	//
-	// 	for (int x = -radius; x <= radius; x++)
-	// 	{
-	// 		for (int y = -radius; y <= radius; y++)
-	// 		{
-	// 			if (new Vector2(x, y).Length() > radius)
-	// 				continue;
-	//
-	// 			Vector2 pixel = pos + new Vector2(x, y);
-	// 			if (pixel.X < 0 || pixel.X >= fgImage.GetWidth())
-	// 				continue;
-	// 			if (pixel.Y < 0 || pixel.Y >= fgImage.GetHeight())
-	// 				continue;
-	// 			fgImage.SetPixel((int)pixel.X, (int)pixel.Y, TRANSPARENT);
-	// 		}
-	// 	}
-	//
-	// 	//fgImage.Unlock();
-	// 	//fgTexture.SetData(fgImage);
-	// }
+	public void Explosion(Vector2 pos, int radius)
+	{
+		GetNode<Collision>("Collision").Explosion(pos, radius);
+		
+		Image fgImage = fg.Texture.GetImage();
+	
+		for (int x = -radius; x <= radius; x++)
+		{
+			for (int y = -radius; y <= radius; y++)
+			{
+				if (new Vector2(x, y).Length() > radius)
+					continue;
+	
+				Vector2 pixel = pos + new Vector2(x, y);
+				if (pixel.X < 0 || pixel.X >= fgImage.GetWidth())
+					continue;
+				if (pixel.Y < 0 || pixel.Y >= fgImage.GetHeight())
+					continue;
+				fgImage.SetPixel((int)pixel.X, (int)pixel.Y, TRANSPARENT);
+			}
+		}
+
+		fg.Texture = ImageTexture.CreateFromImage(fgImage);
+	}
 }

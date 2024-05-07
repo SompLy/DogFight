@@ -1,17 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmhmwd6jnqatf"]
+[gd_scene load_steps=4 format=3 uid="uid://dmhmwd6jnqatf"]
 
 [ext_resource type="PackedScene" uid="uid://bbf161rho30d0" path="res://map.tscn" id="1_0ka7u"]
 [ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player.tscn" id="2_012hh"]
+[ext_resource type="Script" path="res://assets/scripts/PerformanceStats.cs" id="3_sf11s"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("1_0ka7u")]
 
 [node name="Player" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(523, 126)
+position = Vector2(523, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 29)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
+
+[node name="Label" type="Label" parent="Player/Camera2D"]
+offset_left = -189.0
+offset_top = -110.0
+offset_right = -129.0
+offset_bottom = -77.0
+text = "FPS"
+script = ExtResource("3_sf11s")

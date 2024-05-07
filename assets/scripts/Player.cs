@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class player : CharacterBody2D
+public partial class Player : CharacterBody2D
 {
 	public int Jump = 0;
 	public int JumpDir = 0;
@@ -11,15 +11,15 @@ public partial class player : CharacterBody2D
 
 	public override void _Input(InputEvent @event)
 	{
-		//if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
-		//{
-		//	var grenade = (Grenade)Grenade.Instance();
-		//	grenade.Position = Position + new Vector2(0, -12); // Position it 12px above our origin
-		//	// `grenade.Init()` takes as argument the direction that the grenade will fly in
-		//	// we subtract the grenade's global position from the mouse global position to get that
-		//	grenade.Init(GetGlobalMousePosition() - GlobalPosition + new Vector2(0, -12));
-		//	GetParent().AddChild(grenade); // Finally add the grenade as a child of our parent (`Main`)
-		//}
+		if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
+		{
+			Grenade grenade = new Grenade();
+			grenade.Position = Position + new Vector2(0, -12); // Position it 12px above our origin
+			// `grenade.Init()` takes as argument the direction that the grenade will fly in
+			// we subtract the grenade's global position from the mouse global position to get that
+			grenade.Init(GetGlobalMousePosition() - GlobalPosition + new Vector2(0, -12));
+			GetParent().AddChild(grenade); // Finally add the grenade as a child of our parent (`Main`)
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
