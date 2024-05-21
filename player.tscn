@@ -12,6 +12,6 @@ script = ExtResource("1_ccjs0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ruu7v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_avy51")
