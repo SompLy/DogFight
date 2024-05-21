@@ -9,10 +9,9 @@
 [node name="Map" parent="." instance=ExtResource("1_0ka7u")]
 
 [node name="Player" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(523, 0)
+position = Vector2(13.21, 11.21)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, 29)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0

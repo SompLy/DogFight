@@ -18,9 +18,13 @@ public partial class Map : Node2D
 		GetNode<Collision>( "Collision" ).InitMap( line, fg.Texture.GetWidth(), fg.Texture.GetHeight() );
 	}
 
-	public Vector2 CollisionNormal( Vector2 pos )
+	public Vector2 CollisionNormalPoint( Vector2 pos )
 	{
-		return GetNode<Collision>( "Collision" ).CollisionNormal( pos );
+		return GetNode<Collision>( "Collision" ).CollisionNormalPoint( pos );
+	}
+	public Vector2 CollisionNormalBox( CollisionShape2D box, Vector2 dir)
+	{
+		return GetNode<Collision>( "Collision" ).CollisionNormalBox( box, dir );
 	}
 
 	private void _GenerateMap()
@@ -28,7 +32,7 @@ public partial class Map : Node2D
 		FastNoiseLite noise = new FastNoiseLite();
 		noise.Seed           = ( int )GD.Randi();
 		noise.FractalOctaves = 2;
-		noise.Frequency      = 0.001f;
+		noise.Frequency      = 0.002f;
 		noise.NoiseType      = FastNoiseLite.NoiseTypeEnum.Simplex;
 
 		Image fgImage = fg.Texture.GetImage();

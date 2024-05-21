@@ -12,6 +12,11 @@ public partial class Grenade : Node2D
 		_dir = dir.Normalized() * Mathf.Max( 2, dir.Length() * 0.01f );
 	}
 
+	public override void _Ready()
+	{
+		GD.Print( "epic" );
+		GD.Print( GetNode<Sprite2D>( "../Timer" ).Name );
+	}
 
 	public override void _PhysicsProcess( double delta )
 	{
@@ -33,7 +38,7 @@ public partial class Grenade : Node2D
 		{
 			var newPosition = Position +
 							  ( Vector2.Down * Mathf.Sign( velocity.Y ) * Mathf.Min( Mathf.Abs( velocity.Y ), 1.0f ) );
-			var normal = GetNode<Map>( "../Map" ).CollisionNormal( newPosition );
+			var normal = GetNode<Map>( "../Map" ).CollisionNormalPoint( newPosition );
 			velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( velocity.Y ) ) * Mathf.Sign( velocity.Y );
 
 			if ( normal == Vector2.One )
@@ -58,7 +63,7 @@ public partial class Grenade : Node2D
 		{
 			var newPosition = Position +
 							  ( Vector2.Right * Mathf.Sign( velocity.X ) * Mathf.Min( Mathf.Abs( velocity.X ), 1.0f ) );
-			var normal = GetNode<Map>( "../Map" ).CollisionNormal( newPosition );
+			var normal = GetNode<Map>( "../Map" ).CollisionNormalPoint( newPosition );
 			velocity.X -= Mathf.Min( 1.0f, Mathf.Abs( velocity.X ) ) * Mathf.Sign( velocity.X );
 
 			if ( normal == Vector2.One )

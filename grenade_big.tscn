@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0pddkevrp2kb"]
+
+[ext_resource type="Script" path="res://assets/scripts/GrenadeBig.cs" id="1_4edb8"]
+[ext_resource type="Texture2D" uid="uid://0rpxj1gfir1h" path="res://assets/sprites/Weapon_Granade.png" id="2_nt8yc"]
+
+[node name="GrenadeBig" type="Node2D"]
+script = ExtResource("1_4edb8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -31.0
+offset_right = 36.0
+offset_bottom = -8.0
+text = "0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nt8yc")
+
+[connection signal="timeout" from="Timer" to="." method="_OnTimerTimeout"]
