@@ -30,12 +30,13 @@ public partial class Player : CharacterBody2D
 	{
 		if ( @event is InputEventMouseButton mouseButton && mouseButton.Pressed )
 		{
-			Grenade grenade = new Grenade();
-			grenade.Position = Position + new Vector2( 0, -12 ); // Position it 12px above our origin
+			PackedScene scene = GD.Load<PackedScene>( "res://grenade_big.tscn" );
+			GrenadeBig instance = ( GrenadeBig )scene.Instantiate();
+			instance.Position = Position + new Vector2( 0, -12 ); // Position it 12px above our origin
 			// `grenade.Init()` takes as argument the direction that the grenade will fly in
 			// we subtract the grenade's global position from the mouse global position to get that
-			grenade.Init( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
-			GetParent().AddChild( grenade ); // Add the grenade as a child of our parent (`Main`)
+			instance.Init( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
+			GetParent().AddChild( instance ); // Add the grenade as a child of our parent (`Main`)
 		}
 	}
 

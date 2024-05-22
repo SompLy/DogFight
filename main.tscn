@@ -9,7 +9,7 @@
 [node name="Map" parent="." instance=ExtResource("1_0ka7u")]
 
 [node name="Player" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(13.21, 11.21)
+position = Vector2(500, 50)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
