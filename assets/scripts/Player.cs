@@ -5,15 +5,17 @@ public partial class Player : CharacterBody2D
 {
 	private CollisionShape2D _collisionShape;
 	private Vector2[]        _rectPoints;
+	private Map				 _map;
 	
 	private int _jump    = 0;
 	private int _jumpDir = 0;
 
-	// Get the gravity from the project settings
-	private float _gravity = ProjectSettings.GetSetting( "physics/2d/default_gravity" ).AsSingle();
+	private Vector2 _dir;
+	private const float GRAVITY = 0.1f;
 
 	public override void _Ready()
 	{
+		_map = GetNode<Map>( "../Map" );
 		_collisionShape = GetNode<CollisionShape2D>( "Collider" );
 		Rect2 rect = _collisionShape.Shape.GetRect();
 		_rectPoints = new Vector2[]
@@ -42,8 +44,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess( double delta )
 	{
-		//GD.Print( "X: " + Position.X.ToString() +
-		//		  ", Y: " + Position.Y.ToString() + "\n" );
+		_dir.Y += GRAVITY / Mathf.Max( _dir.Length(), 1 );
+		DoSteps();
 		
 		Vector2 validPos;
 		if ( _jump > 0 )
@@ -59,15 +61,14 @@ public partial class Player : CharacterBody2D
 				// new position doesn't have a normal -> it's valid to move to
 				if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( pos ) == Vector2.Zero )
 					validPos = pos;
-
 			}
 
 			_jump--;              // reduce the jump counter
 			Position = validPos; // move to the next valid position
-			return;              // No other controls allowed while in the air
 		}
 
-		int walk = _jumpDir; // set walk to jumpDir in case we are falling
+		//int walk = _jumpDir; // set walk to jumpDir in case we are falling
+		int walk = 0;
 		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0, 1 ) ) != Vector2.Zero )
 		{
 			// the pixel below us is solid.
@@ -104,6 +105,37 @@ public partial class Player : CharacterBody2D
 		
 		Position += GetNode<Map>( "../Map" ).CollisionNormalPoint( validPos );
 	}
+
+	private void DoSteps()
+	{
+		var velocity = _dir;
+		
+		while ( Mathf.Abs( velocity.Y ) > 0 )
+		{
+			var newPosition = Position +
+			                  ( Vector2.Down * Mathf.Sign( velocity.Y ) * Mathf.Min( Mathf.Abs( velocity.Y ), 1.0f ) );
+			var normal = _map.CollisionNormalPoint( newPosition );
+			velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( velocity.Y ) ) * Mathf.Sign( velocity.Y );
+	
+			if ( normal == Vector2.One )
+				break;
+	
+			if ( Mathf.Sign( normal.Y ) != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
+			{
+				_dir.Y     *= -0.5f;
+				velocity.Y *= -0.5f;
+			}
+	
+			if ( Mathf.Sign( normal.X ) != 0 && Mathf.Sign( _dir.X ) != Mathf.Sign( normal.X ) )
+			{
+				_dir.X     *= -0.8f;
+				velocity.X *= -0.8f;
+			}
+	
+			Position = newPosition;
+		}
+	}
+
 	public override void _Draw()
 	{
 		//DrawLine( _rectPoints[ 0 ], _rectPoints[ 1 ], Colors.Aqua, 1.0f );
