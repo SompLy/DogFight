@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgxxnwpgpeo0f"]
+
+[ext_resource type="Script" path="res://assets/scripts/MultiTargetDynamicCamera2D.cs" id="1_c4b6m"]
+
+[node name="MultiTargetDynamicCamera2D" type="Camera2D"]
+script = ExtResource("1_c4b6m")
