@@ -1,33 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmhmwd6jnqatf"]
+[gd_scene load_steps=10 format=3 uid="uid://dmhmwd6jnqatf"]
 
 [ext_resource type="PackedScene" uid="uid://bbf161rho30d0" path="res://map.tscn" id="1_0ka7u"]
 [ext_resource type="Script" path="res://assets/scripts/CameraTargetsManager.cs" id="1_u0nos"]
 [ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player.tscn" id="2_012hh"]
 [ext_resource type="PackedScene" uid="uid://dgxxnwpgpeo0f" path="res://multi_target_dynamic_camera_2d.tscn" id="2_kpes7"]
 [ext_resource type="Script" path="res://assets/scripts/PerformanceStats.cs" id="3_sf11s"]
+[ext_resource type="Resource" uid="uid://cdsbevbrrumu3" path="res://assets/Resource/p1_Controls.tres" id="6_wbecm"]
+[ext_resource type="Texture2D" uid="uid://ghf3cigropec" path="res://assets/sprites/Dog_collie.png" id="7_acwt3"]
+[ext_resource type="Resource" uid="uid://buurfqbo31c3o" path="res://assets/Resource/p2_Controls.tres" id="7_j57rf"]
+[ext_resource type="Texture2D" uid="uid://d2su4chgj4jsc" path="res://assets/sprites/Dog_golden.png" id="9_v8k0o"]
 
 [node name="Main" type="Node2D"]
 
 [node name="CameraTargetsManager" type="Node" parent="."]
 script = ExtResource("1_u0nos")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 465.0
-offset_top = -16.0
-offset_right = 506.0
-offset_bottom = 14.0
+[node name="MultiTargetDynamicCamera2D" parent="." instance=ExtResource("2_kpes7")]
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+
+[node name="Label" type="Label" parent="MultiTargetDynamicCamera2D"]
+offset_left = -18.0
+offset_top = -314.0
+offset_right = 23.0
+offset_bottom = -284.0
 text = "FPS"
 script = ExtResource("3_sf11s")
 
-[node name="MultiTargetDynamicCamera2D" parent="." instance=ExtResource("2_kpes7")]
-position_smoothing_enabled = true
-
 [node name="Map" parent="." instance=ExtResource("1_0ka7u")]
 
-[node name="Player" parent="." instance=ExtResource("2_012hh")]
+[node name="Player1" parent="." instance=ExtResource("2_012hh")]
+_controls = ExtResource("6_wbecm")
+_playerTexture = ExtResource("7_acwt3")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-visible = false
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-position_smoothing_speed = 12.0
+[node name="Player2" parent="." instance=ExtResource("2_012hh")]
+position = Vector2(1000, 0)
+_controls = ExtResource("7_j57rf")
+_playerTexture = ExtResource("9_v8k0o")

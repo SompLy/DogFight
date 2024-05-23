@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://banl63ixyoheq"]
 
 [ext_resource type="Script" path="res://assets/scripts/Player.cs" id="1_ccjs0"]
-[ext_resource type="Texture2D" uid="uid://dlu2p4skf5yct" path="res://assets/sprites/Player_Dog.png" id="1_ruu7v"]
+[ext_resource type="Texture2D" uid="uid://dlu2p4skf5yct" path="res://assets/sprites/Dog_red.png" id="2_gb6f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avy51"]
 size = Vector2(15, 12)
@@ -10,7 +10,7 @@ size = Vector2(15, 12)
 script = ExtResource("1_ccjs0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ruu7v")
+texture = ExtResource("2_gb6f8")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1)
