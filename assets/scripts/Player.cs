@@ -9,14 +9,19 @@ public partial class Player : CharacterBody2D
 	
 	private int _jump    = 0;
 	private int _jumpDir = 0;
-
 	private Vector2 _dir;
-	private const float GRAVITY = 0.1f;
 
+	private const float Gravity = 0.1f;
+
+	[Export] private PlayerControls _controls;
+	[Export] private Texture2D _playerTexture;
+	
 	public override void _Ready()
 	{
 		_map = GetNode<Map>( "../Map" );
 		_collisionShape = GetNode<CollisionShape2D>( "Collider" );
+		GetNode<Sprite2D>( "Sprite2D" ).Texture = _playerTexture;
+		
 		Rect2 rect = _collisionShape.Shape.GetRect();
 		_rectPoints = new Vector2[]
 		{
@@ -44,7 +49,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess( double delta )
 	{
-		_dir.Y += GRAVITY / Mathf.Max( _dir.Length(), 1 );
+		//_dir.Y += Gravity / Mathf.Max( _dir.Length(), 1 );
 		DoSteps();
 		
 		Vector2 validPos;
@@ -74,19 +79,19 @@ public partial class Player : CharacterBody2D
 			// the pixel below us is solid.
 			
 			_jumpDir = 0; // Not jumping
-			if ( Input.IsActionPressed( "Up" ) )
+			if ( Input.IsActionPressed( _controls.Jump ) )
 			{
 				// we are trying to jump
 				if ( _jump == 0 ) // currently not traveling upwards
 				{
-					_jumpDir = Convert.ToInt32( Input.GetActionStrength( "Right" ) ) -
-							  Convert.ToInt32( Input.GetActionStrength( "Left" ) );
-					_jump = 10; // Travel upwards for 10 frames
+					_jumpDir = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
+							  Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
+					_jump = 20; // Travel upwards for x frames
 				}
 			}
 
-			walk = Convert.ToInt32( Input.GetActionStrength( "Right" ) ) -
-				   Convert.ToInt32( Input.GetActionStrength( "Left" ) );
+			walk = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
+				   Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
 		}
 
 		validPos = Position; // current position is valid and our fallback
@@ -146,7 +151,7 @@ public partial class Player : CharacterBody2D
 		//DrawCircle( Position, 1.0f, Colors.Aqua );
 		//DrawCircle( _rectPoints[ 0 ], 1.0f, Colors.Red );
 		//DrawCircle( _rectPoints[ 1 ], 1.0f, Colors.Aqua );
-		DrawCircle( _rectPoints[ 2 ], 1.0f, Colors.Aqua );
-		DrawCircle( _rectPoints[ 3 ], 1.0f, Colors.Aqua );
+		//DrawCircle( _rectPoints[ 2 ], 1.0f, Colors.Aqua );
+		//DrawCircle( _rectPoints[ 3 ], 1.0f, Colors.Aqua );
 	}
 }
