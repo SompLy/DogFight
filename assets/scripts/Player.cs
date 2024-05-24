@@ -6,10 +6,9 @@ public partial class Player : CharacterBody2D
 	private CollisionShape2D _collisionShape;
 	private Vector2[]        _rectPoints;
 	private Map				 _map;
-	
-	private int _jump    = 0;
-	private int _jumpDir = 0;
-	private Vector2 _dir;
+
+	private bool _isAirborne;
+	private Vector2 _velocity;
 
 	private const float Gravity = 0.1f;
 
@@ -49,53 +48,57 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess( double delta )
 	{
-		//_dir.Y += Gravity / Mathf.Max( _dir.Length(), 1 );
 		DoSteps();
 		
 		Vector2 validPos;
-		if ( _jump > 0 )
-		{
-			validPos = Position; // We are currently on a valid position
-			
-			// Possible pixel player can jump to 
-			for ( int i = 0; i > -6; i-- )
-			{
-				Vector2 dir = new Vector2( _jumpDir, i );
-				Vector2 pos = Position + dir;
-				
-				// new position doesn't have a normal -> it's valid to move to
-				if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( pos ) == Vector2.Zero )
-					validPos = pos;
-			}
 
-			_jump--;              // reduce the jump counter
-			Position = validPos; // move to the next valid position
+		if ( _isAirborne )
+		{
+			//_velocityY += Gravity / Mathf.Max( _velocityY, 1 );
+			DoSteps();
 		}
+		// if ( _jump > 0 )
+		// {
+		// 	validPos = Position; // We are currently on a valid position
+		// 	
+		// 	// Possible pixel player can jump to 
+		// 	for ( int i = 0; i > -6; i-- )
+		// 	{
+		// 		Vector2 dir = new Vector2( _jumpDir, i );
+		// 		Vector2 pos = Position + dir;
+		// 		
+		// 		// new position doesn't have a normal -> it's valid to move to
+		// 		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( pos ) == Vector2.Zero )
+		// 			validPos = pos;
+		// 	}
+		//
+		// 	_jump--;              // reduce the jump counter
+		// 	Position = validPos; // move to the next valid position
+		// }
 
 		//int walk = _jumpDir; // set walk to jumpDir in case we are falling
 		int walk = 0;
 		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0, 1 ) ) != Vector2.Zero )
 		{
 			// the pixel below us is solid.
-			
-			_jumpDir = 0; // Not jumping
+			_isAirborne = false;
 			if ( Input.IsActionPressed( _controls.Jump ) )
 			{
-				// we are trying to jump
-				if ( _jump == 0 ) // currently not traveling upwards
-				{
-					_jumpDir = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
-							  Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
-					_jump = 20; // Travel upwards for x frames
-				}
+				_isAirborne = true;
+				_velocity.Y -= 10.0f;
 			}
+		}
 
+		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0.0f, -1.0f )) != Vector2.Down )
+		{
+			//_velocity.Y = 0.0f;
+		}
 			walk = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
 				   Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
-		}
 
 		validPos = Position; // current position is valid and our fallback
 
+		// Where to walk, for loop is for slopes
 		for ( int i = -3; i < 4; i++ )
 		{
 			Vector2 dir  = new Vector2( walk, i );
@@ -104,41 +107,26 @@ public partial class Player : CharacterBody2D
 			// new position doesn't have a normal -> it's valid to move to
 			if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( pos ) == Vector2.Zero )
 				validPos = pos;
+			else
+				break;
 		}
 
 		Position = validPos;
-		
+		Position += _velocity;
 		Position += GetNode<Map>( "../Map" ).CollisionNormalPoint( validPos );
 	}
 
 	private void DoSteps()
 	{
-		var velocity = _dir;
+		// Decerase velocity
+		_velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( _velocity.Y ) ) * Mathf.Sign( _velocity.Y ) * 0.5f;
+		_velocity.X -= Mathf.Min( 1.0f, Mathf.Abs( _velocity.X ) ) * Mathf.Sign( _velocity.X );
 		
-		while ( Mathf.Abs( velocity.Y ) > 0 )
-		{
-			var newPosition = Position +
-			                  ( Vector2.Down * Mathf.Sign( velocity.Y ) * Mathf.Min( Mathf.Abs( velocity.Y ), 1.0f ) );
-			var normal = _map.CollisionNormalPoint( newPosition );
-			velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( velocity.Y ) ) * Mathf.Sign( velocity.Y );
-	
-			if ( normal == Vector2.One )
-				break;
-	
-			if ( Mathf.Sign( normal.Y ) != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
-			{
-				_dir.Y     *= -0.5f;
-				velocity.Y *= -0.5f;
-			}
-	
-			if ( Mathf.Sign( normal.X ) != 0 && Mathf.Sign( _dir.X ) != Mathf.Sign( normal.X ) )
-			{
-				_dir.X     *= -0.8f;
-				velocity.X *= -0.8f;
-			}
-	
-			Position = newPosition;
-		}
+		// Calculate new position
+		var newPosition = Position +
+		                  ( Vector2.Down * 0.1f * Mathf.Sign( _velocity.Y ) * Mathf.Min( Mathf.Abs( _velocity.Y ), 1.0f ) );
+		
+		Position = newPosition;
 	}
 
 	public override void _Draw()

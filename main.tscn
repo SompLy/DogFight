@@ -12,6 +12,8 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="Map" parent="." instance=ExtResource("1_0ka7u")]
+
 [node name="CameraTargetsManager" type="Node" parent="."]
 script = ExtResource("1_u0nos")
 
@@ -21,15 +23,14 @@ position_smoothing_speed = 1.0
 
 [node name="Label" type="Label" parent="MultiTargetDynamicCamera2D"]
 offset_left = -18.0
-offset_top = -314.0
+offset_top = -93.0
 offset_right = 23.0
-offset_bottom = -284.0
+offset_bottom = -63.0
 text = "FPS"
 script = ExtResource("3_sf11s")
 
-[node name="Map" parent="." instance=ExtResource("1_0ka7u")]
-
 [node name="Player1" parent="." instance=ExtResource("2_012hh")]
+position = Vector2(16.285, 9.98)
 _controls = ExtResource("6_wbecm")
 _playerTexture = ExtResource("7_acwt3")
 

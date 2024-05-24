@@ -13,5 +13,5 @@ script = ExtResource("1_ccjs0")
 texture = ExtResource("2_gb6f8")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_avy51")
