@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfowy3tdax43h"
-path="res://.godot/imported/arrow.png-943f4cc03c816e045d529085c0bf8638.ctex"
+uid="uid://yf1b8j5ebu4s"
+path="res://.godot/imported/BackGround_Test_bigaf.png-5e698c2f4d99eed475c5d04dce94988a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/windows_95_theme/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-943f4cc03c816e045d529085c0bf8638.ctex"]
+source_file="res://assets/sprites/BackGround_Test_bigaf.png"
+dest_files=["res://.godot/imported/BackGround_Test_bigaf.png-5e698c2f4d99eed475c5d04dce94988a.ctex"]
 
 [params]
 
