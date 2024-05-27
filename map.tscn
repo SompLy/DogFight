@@ -1,19 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbf161rho30d0"]
+[gd_scene load_steps=5 format=3 uid="uid://bbf161rho30d0"]
 
 [ext_resource type="Script" path="res://assets/scripts/Map.cs" id="1_ddjp6"]
 [ext_resource type="Texture2D" uid="uid://dx13iyd35jllv" path="res://assets/sprites/BackGround_Test.png" id="2_jjspj"]
+[ext_resource type="Texture2D" uid="uid://yf1b8j5ebu4s" path="res://assets/sprites/BackGround_Test_bigaf.png" id="2_q8o4e"]
 [ext_resource type="Script" path="res://assets/scripts/Collision.cs" id="3_he541"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ddjp6")
 
 [node name="BG" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(501, 251)
 texture = ExtResource("2_jjspj")
 
 [node name="FG" type="Sprite2D" parent="."]
-position = Vector2(502, 252)
-texture = ExtResource("2_jjspj")
+position = Vector2(400, 200)
+texture = ExtResource("2_q8o4e")
 
 [node name="Collision" type="Node" parent="."]
 script = ExtResource("3_he541")

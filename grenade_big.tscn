@@ -19,7 +19,6 @@ visible_characters = 3
 visible_ratio = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4.76837e-07, -4.76837e-07)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("2_nt8yc")
 
