@@ -5,28 +5,29 @@ using System.Collections.Generic;
 public partial class Collision : Node
 {
 	private const int MAX_WIDTH = 10000;
-	private       int mapWidth  = 0;
-	private       int mapHeight = 0;
+	private int mapWidth = 0;
+	private int mapHeight = 0;
 
-	private bool[][]  collision  = new bool[ MAX_WIDTH ][];
-	private Vector2[] rectPoints = new Vector2[ 3 ];
+	private byte[][] collision = new byte[MAX_WIDTH][];
+	private Vector2[] rectPoints = new Vector2[3];
+
 	public void InitMap( List<float> line, int width, int height )
 	{
 		mapWidth  = width;
 		mapHeight = height;
 		for ( int x = 0; x < mapWidth; x++ )
 		{
-			collision[ x ] = new bool[mapHeight];
+			collision[ x ] = new byte[mapHeight];
 			for ( int y = 0; y < mapHeight; y++ )
 			{
 				if ( line[ x ] > y )
-					collision[ x ][ y ] = false;
+					collision[ x ][ y ] = 0; // Ait
 				else
-					collision[ x ][ y ] = true;
+					collision[ x ][ y ] = 1; // Dirt
 			}
 		}
 	}
-	
+
 	public Vector2 CollisionNormalPoint( Vector2 pos )
 	{
 		// Out of bounds
@@ -39,7 +40,7 @@ public partial class Collision : Node
 		if ( pos.Y >= mapHeight )
 			return Vector2.Up;
 
-		if ( collision[ ( int )pos.X ][ ( int )pos.Y ] )
+		if ( collision[ ( int )pos.X ][ ( int )pos.Y ] > 0 )
 			return Vector2.One;
 
 		Vector2 normal = Vector2.Zero;
@@ -47,23 +48,23 @@ public partial class Collision : Node
 		{
 			// Checks all pixels around pos with world bounds and collision array
 			Vector2 observedPixel = pos + direction;
-			if ( observedPixel.X < 0 || observedPixel.X >= mapWidth  || 
-			     observedPixel.Y < 0 || observedPixel.Y >= mapHeight ||
-			     collision[ ( int )observedPixel.X ][ ( int )observedPixel.Y ] )
+			if ( observedPixel.X                                               < 0 || observedPixel.X >= mapWidth  ||
+			     observedPixel.Y                                               < 0 || observedPixel.Y >= mapHeight ||
+			     collision[ ( int )observedPixel.X ][ ( int )observedPixel.Y ] > 0 )
 				normal += direction * -1;
 		}
 
 		// Returns normal if collided
 		return normal.Normalized();
 	}
-	
+
 	public Vector2 CollisionNormalBox( CollisionShape2D box, Vector2 dir )
 	{
-		Rect2     rect       = box.Shape.GetRect();
+		Rect2 rect = box.Shape.GetRect();
 		rectPoints = new Vector2[]
 		{
-			rect.Position + dir,                                                  // Top-Left
-			new Vector2( rect.Position.X + rect.Size.X, rect.Position.Y ) + dir,  // Top-Right
+			rect.Position                                                  + dir, // Top-Left
+			new Vector2( rect.Position.X + rect.Size.X, rect.Position.Y )  + dir, // Top-Right
 			new Vector2( rect.Position.X,               -rect.Position.Y ) + dir, // Bottom-Left
 			new Vector2( rect.Position.X + rect.Size.X, -rect.Position.Y ) + dir  // Bottom-Right
 		};
@@ -80,7 +81,7 @@ public partial class Collision : Node
 			if ( pos.Y >= mapHeight )
 				return Vector2.Up;
 
-			if ( collision[ ( int )pos.X ][ ( int )pos.Y ] )
+			if ( collision[ ( int )pos.X ][ ( int )pos.Y ] > 0 )
 				return Vector2.One;
 
 			Vector2 normal = Vector2.Zero;
@@ -88,15 +89,16 @@ public partial class Collision : Node
 			{
 				// Checks all pixels around pos with world bounds and collision array
 				Vector2 observedPixel = pos + direction;
-				if ( observedPixel.X < 0 || observedPixel.X >= mapWidth  ||
+				if ( observedPixel.X < 0 || observedPixel.X >= mapWidth ||
 				     observedPixel.Y < 0 || observedPixel.Y >= mapHeight ||
-				     collision[ ( int )observedPixel.X ][ ( int )observedPixel.Y ] )
+				     collision[ ( int )observedPixel.X ][ ( int )observedPixel.Y ] > 0 )
 					normal += direction * -1;
 			}
+
 			normals.Add( normal );
 		}
 
-		Vector2 tempVec = new Vector2(  );
+		Vector2 tempVec = new Vector2();
 		foreach ( Vector2 nor in normals )
 			tempVec += nor;
 		tempVec *= 0.25f;
@@ -119,7 +121,8 @@ public partial class Collision : Node
 				if ( pixel.X < 0 || pixel.X >= mapWidth || pixel.Y < 0 || pixel.Y >= mapHeight )
 					continue;
 
-				collision[ ( int )pixel.X ][ ( int )pixel.Y ] = false;
+				// Set to air
+				collision[ ( int )pixel.X ][ ( int )pixel.Y ] = 0;
 			}
 		}
 	}
