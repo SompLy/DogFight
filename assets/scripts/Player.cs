@@ -48,36 +48,14 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess( double delta )
 	{
-		DoSteps();
-		
 		Vector2 validPos;
+		int walk = 0;
 
 		if ( _isAirborne )
 		{
-			//_velocityY += Gravity / Mathf.Max( _velocityY, 1 );
-			DoSteps();
+			ApplyVelocity();
 		}
-		// if ( _jump > 0 )
-		// {
-		// 	validPos = Position; // We are currently on a valid position
-		// 	
-		// 	// Possible pixel player can jump to 
-		// 	for ( int i = 0; i > -6; i-- )
-		// 	{
-		// 		Vector2 dir = new Vector2( _jumpDir, i );
-		// 		Vector2 pos = Position + dir;
-		// 		
-		// 		// new position doesn't have a normal -> it's valid to move to
-		// 		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( pos ) == Vector2.Zero )
-		// 			validPos = pos;
-		// 	}
-		//
-		// 	_jump--;              // reduce the jump counter
-		// 	Position = validPos; // move to the next valid position
-		// }
-
-		//int walk = _jumpDir; // set walk to jumpDir in case we are falling
-		int walk = 0;
+		
 		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0, 1 ) ) != Vector2.Zero )
 		{
 			// the pixel below us is solid.
@@ -89,12 +67,14 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0.0f, -1.0f )) != Vector2.Down )
-		{
-			//_velocity.Y = 0.0f;
-		}
-			walk = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
-				   Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
+		//if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0.0f, -1.0f )) != Vector2.Down )
+		//{
+			// Jump through overhangs fix
+			//_velocity.Y = 1.0f;
+		//}
+		
+		walk = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
+			   Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
 
 		validPos = Position; // current position is valid and our fallback
 
@@ -116,7 +96,7 @@ public partial class Player : CharacterBody2D
 		Position += GetNode<Map>( "../Map" ).CollisionNormalPoint( validPos );
 	}
 
-	private void DoSteps()
+	private void ApplyVelocity()
 	{
 		// Decerase velocity
 		_velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( _velocity.Y ) ) * Mathf.Sign( _velocity.Y ) * 0.5f;
