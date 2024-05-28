@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/image="res://assets/sprites/Dog_golden.png"
 config/icon="res://assets/sprites/Dog_golden.png"
 
+[autoload]
+
+GameManager="*res://assets/scripts/GameManager.cs"
+
 [display]
 
 window/vsync/vsync_mode=0
