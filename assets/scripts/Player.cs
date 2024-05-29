@@ -18,13 +18,21 @@ public partial class Player : CharacterBody2D
 	private const float Gravity = 0.1f;
 
 	[Export] private PlayerControls _controls;
-	[Export] private Texture2D _playerTexture;
+	[Export] private Texture2D		_playerTexture;
+			 private Sprite2D		_playerSprite;
+			 private Node2D 		_rotationPoint;
+			 private Node2D 		_directionSprite;
 	
 	public override void _Ready()
 	{
-		_map = GetNode<Map>( "../Map" );
-		_collisionShape = GetNode<CollisionShape2D>( "Collider" );
-		GetNode<Sprite2D>( "Sprite2D" ).Texture = _playerTexture;
+		_gameManager	 = GetNode<GameManager>		( "/root/GameManager" );
+		_map			 = GetNode<Map>				( "../Map" );
+		_collisionShape  = GetNode<CollisionShape2D>( "DamageCollider" );
+		_rotationPoint	 = GetNode<Node2D>			( "RotationPoint" );
+		_directionSprite = GetNode<Sprite2D>		( "RotationPoint/DirectionSprite" );
+		_playerSprite	 = GetNode<Sprite2D>		( "CharacterSprite" );
+		
+		GetNode<Sprite2D>( "CharacterSprite" ).Texture = _playerTexture;
 		
 		Rect2 rect = _collisionShape.Shape.GetRect();
 		_rectPoints = new Vector2[]
@@ -39,18 +47,36 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Input( InputEvent @event )
 	{
-		if ( @event is InputEventMouseButton mouseButton && mouseButton.Pressed )
-		{
-			PackedScene scene = GD.Load<PackedScene>( "res://grenade_big.tscn" );
-			GrenadeBig instance = ( GrenadeBig )scene.Instantiate();
-			instance.Position = Position + new Vector2( 0, -12 ); // Position it 12px above our origin
-			// `grenade.Init()` takes as argument the direction that the grenade will fly in
-			// we subtract the grenade's global position from the mouse global position to get that
-			instance.Init( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
-			GetParent().AddChild( instance ); // Add the grenade as a child of our parent (`Main`)
-		}
+		// Mouse & keyboard
+		if ( @event is InputEventMouseButton { Pressed: true } && _gameManager.UseMouse )
+			InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
+		// Keyboard only
+		if ( Input.IsActionPressed( _controls.Attack ) )
+			InstantiateGrenade( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
+		if ( Input.IsActionPressed( _controls.AimLeft ) )
+			_rotationPoint.RotationDegrees -= 25;
+		if ( Input.IsActionPressed( _controls.AimRight ) )
+			_rotationPoint.RotationDegrees += 25;
 	}
 
+	public void InstantiateGrenade( Vector2 dir )
+	{
+		PackedScene scene = GD.Load<PackedScene>( "res://grenade_big.tscn" );
+		GrenadeBig instance = ( GrenadeBig )scene.Instantiate();
+		instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above our origin
+		// `grenade.Init()` takes as argument the direction that the grenade will fly in
+		// we subtract the grenade's global position from the mouse global position to get that
+		instance.Init( dir );
+		GetParent().AddChild( instance ); // Add the grenade as a child of our parent (`Main`)
+	}
+
+	public override void _Process( double delta )
+	{
+		if ( Health <= 0 )
+		{
+			QueueFree();
+		}
+	}
 	public override void _PhysicsProcess( double delta )
 	{
 		Vector2 validPos;
