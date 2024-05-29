@@ -22,7 +22,9 @@ public partial class CameraTargetsManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		_multiTargetDynamicCamera2D.UpdateTarget( _player1.Position, 0 );
-		_multiTargetDynamicCamera2D.UpdateTarget( _player2.Position, 1 );
+		if ( IsInstanceValid( _player1 ) )
+			_multiTargetDynamicCamera2D.UpdateTarget( _player1.Position, 0 );
+		if ( IsInstanceValid( _player2 ) )
+			_multiTargetDynamicCamera2D.UpdateTarget( _player2.Position, 1 );
 	}
 }
