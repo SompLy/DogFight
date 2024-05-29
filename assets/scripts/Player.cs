@@ -114,6 +114,20 @@ public partial class Player : CharacterBody2D
 		walk = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
 			   Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
 
+		// Flip sprite based on direction
+		if ( walk < 0 )
+		{
+			if ( !_isSpriteFlipped )
+				_playerSprite.FlipH = true;
+			_isSpriteFlipped = true;
+		}
+		if ( walk > 0 )
+		{
+			if ( _isSpriteFlipped )
+				_playerSprite.FlipH = false;
+			_isSpriteFlipped = false;
+		}
+		
 		validPos = Position; // current position is valid and our fallback
 
 		// Where to walk, for loop is for slopes
