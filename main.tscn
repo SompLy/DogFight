@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmhmwd6jnqatf"]
 
 [ext_resource type="PackedScene" uid="uid://bbf161rho30d0" path="res://map.tscn" id="1_0ka7u"]
-[ext_resource type="Script" path="res://assets/scripts/CameraTargetsManager.cs" id="1_u0nos"]
+[ext_resource type="Script" path="res://assets/scripts/Managers/CameraTargetsManager.cs" id="1_u0nos"]
 [ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player.tscn" id="2_012hh"]
 [ext_resource type="PackedScene" uid="uid://dgxxnwpgpeo0f" path="res://multi_target_dynamic_camera_2d.tscn" id="2_kpes7"]
 [ext_resource type="Script" path="res://assets/scripts/PerformanceStats.cs" id="3_sf11s"]

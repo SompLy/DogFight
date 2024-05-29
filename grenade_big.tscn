@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0pddkevrp2kb"]
 
-[ext_resource type="Script" path="res://assets/scripts/GrenadeBig.cs" id="1_4edb8"]
+[ext_resource type="Script" path="res://assets/scripts/Weapons/GrenadeBig.cs" id="1_4edb8"]
 [ext_resource type="Texture2D" uid="uid://0rpxj1gfir1h" path="res://assets/sprites/Weapon_Granade.png" id="2_nt8yc"]
 
 [node name="GrenadeBig" type="Node2D"]

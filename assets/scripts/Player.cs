@@ -9,12 +9,22 @@ public partial class Player : CharacterBody2D
 	private Vector2[]        _rectPoints;
 	private Map				 _map;
 
-	[Export] public  int		Health			 = 3;
-	[Export] private float		_attackPower	 = 5.0f;
-			 public  Vector2	InternalVelocity = Vector2.Zero;
-			 public  bool		IsAirborne		 = true;
-			 private bool		_isSpriteFlipped = false;
+	[Export] public  int		Health				= 3;
+	[Export] private float		_attackPowerBazooka	= 60.0f;
+	[Export] private float		_attackPowerGrenade	= 7.0f;
+			 public  Vector2	InternalVelocity 	= Vector2.Zero;
+			 public  bool		IsAirborne		 	= true;
+			 private bool		_isSpriteFlipped 	= false;
+			 
+	 enum EWeapon
+	 {
+		 Bazooka,
+		 Grenade,
+		 Molotov
+	 }
 
+	 private EWeapon _currentWeapon = EWeapon.Bazooka;
+			 
 	private const float Gravity = 0.1f;
 
 	[Export] private PlayerControls _controls;
@@ -52,23 +62,52 @@ public partial class Player : CharacterBody2D
 			InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
 		// Keyboard only
 		if ( Input.IsActionPressed( _controls.Attack ) )
-			InstantiateGrenade( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
+		{
+			switch ( _currentWeapon )
+			{
+				case EWeapon.Bazooka:
+					InstantiateBazooka( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPowerBazooka );
+					break;
+				case EWeapon.Grenade:
+					InstantiateGrenade( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPowerGrenade );
+					break;
+				case EWeapon.Molotov:
+					//InstantiateMolotov( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
+					break;
+				default:
+					break;
+			}
+		}
 		if ( Input.IsActionPressed( _controls.AimLeft ) )
-			_rotationPoint.RotationDegrees -= 25;
+			_rotationPoint.RotationDegrees -= 30;
 		if ( Input.IsActionPressed( _controls.AimRight ) )
-			_rotationPoint.RotationDegrees += 25;
+			_rotationPoint.RotationDegrees += 30;
 	}
 
 	public void InstantiateGrenade( Vector2 dir )
 	{
 		PackedScene scene = GD.Load<PackedScene>( "res://grenade_big.tscn" );
 		GrenadeBig instance = ( GrenadeBig )scene.Instantiate();
-		instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above our origin
-		// `grenade.Init()` takes as argument the direction that the grenade will fly in
-		// we subtract the grenade's global position from the mouse global position to get that
+		instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above
 		instance.Init( dir );
-		GetParent().AddChild( instance ); // Add the grenade as a child of our parent (`Main`)
+		GetParent().AddChild( instance );
 	}
+	public void InstantiateBazooka( Vector2 dir )
+	{
+		PackedScene scene = GD.Load<PackedScene>( "res://bazooka.tscn" );
+		Bazooka instance = ( Bazooka )scene.Instantiate();
+		instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above
+		instance.Init( dir );
+		GetParent().AddChild( instance );
+	}
+	// public void InstantiateMolotov( Vector2 dir )
+	// {
+	// 	PackedScene scene = GD.Load<PackedScene>( "res://bazooka.tscn" );
+	// 	Molotov instance = ( Molotov )scene.Instantiate();
+	// 	instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above
+	// 	instance.Init( dir );
+	// 	GetParent().AddChild( instance );
+	// }
 
 	public override void _Process( double delta )
 	{

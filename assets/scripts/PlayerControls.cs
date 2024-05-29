@@ -16,4 +16,6 @@ public partial class PlayerControls : Resource
 	public string AimLeft { get; set; } = "p1_aimLeft";
 	[Export]
 	public string AimRight { get; set; } = "p1_aimRight";
+	[Export]
+	public string Switch { get; set; } = "p1_switch";
 }
