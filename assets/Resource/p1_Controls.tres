@@ -8,3 +8,6 @@ PlayerIndex = 0
 MoveLeft = "p1_left"
 MoveRight = "p1_right"
 Jump = "p1_up"
+Attack = "p1_attack"
+AimLeft = "p1_aimLeft"
+AimRight = "p1_aimRight"
