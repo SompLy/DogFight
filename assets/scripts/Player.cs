@@ -3,12 +3,17 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	private GameManager _gameManager;
+	
 	private CollisionShape2D _collisionShape;
 	private Vector2[]        _rectPoints;
 	private Map				 _map;
 
-	private bool _isAirborne;
-	private Vector2 _velocity;
+	[Export] public  int		Health			 = 3;
+	[Export] private float		_attackPower	 = 5.0f;
+			 public  Vector2	InternalVelocity = Vector2.Zero;
+			 public  bool		IsAirborne		 = true;
+			 private bool		_isSpriteFlipped = false;
 
 	private const float Gravity = 0.1f;
 
@@ -51,27 +56,34 @@ public partial class Player : CharacterBody2D
 		Vector2 validPos;
 		int walk = 0;
 
-		if ( _isAirborne )
-		{
-			ApplyVelocity();
-		}
+		InternalVelocity.Y -= -12.82f * (float)delta;
+		InternalVelocity.X -= InternalVelocity.X;
 		
 		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0, 1 ) ) != Vector2.Zero )
 		{
 			// the pixel below us is solid.
-			_isAirborne = false;
+			IsAirborne = false;
+			InternalVelocity = Vector2.Zero;
 			if ( Input.IsActionPressed( _controls.Jump ) )
 			{
-				_isAirborne = true;
-				_velocity.Y -= 10.0f;
+				IsAirborne         =  true;
+				InternalVelocity.Y -= 7.0f;
 			}
 		}
+		else
+			IsAirborne = true;
 
-		//if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0.0f, -1.0f )) != Vector2.Down )
-		//{
+		if ( IsAirborne )
+		{
+			// Apply Velocity
+			Position += InternalVelocity;
+		}
+		
+		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0.0f, -1.0f ) ) == Vector2.Down )
+		{
 			// Jump through overhangs fix
-			//_velocity.Y = 1.0f;
-		//}
+			InternalVelocity.Y = 0.0f;
+		}
 		
 		walk = Convert.ToInt32( Input.GetActionStrength( _controls.MoveRight ) ) -
 			   Convert.ToInt32( Input.GetActionStrength( _controls.MoveLeft ) );
@@ -92,21 +104,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		Position = validPos;
-		Position += _velocity;
 		Position += GetNode<Map>( "../Map" ).CollisionNormalPoint( validPos );
-	}
-
-	private void ApplyVelocity()
-	{
-		// Decerase velocity
-		_velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( _velocity.Y ) ) * Mathf.Sign( _velocity.Y ) * 0.5f;
-		_velocity.X -= Mathf.Min( 1.0f, Mathf.Abs( _velocity.X ) ) * Mathf.Sign( _velocity.X );
-		
-		// Calculate new position
-		var newPosition = Position +
-		                  ( Vector2.Down * 0.1f * Mathf.Sign( _velocity.Y ) * Mathf.Min( Mathf.Abs( _velocity.Y ), 1.0f ) );
-		
-		Position = newPosition;
 	}
 
 	public override void _Draw()
