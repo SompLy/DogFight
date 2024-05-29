@@ -30,11 +30,11 @@ text = "FPS"
 script = ExtResource("3_sf11s")
 
 [node name="Player1" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(16.285, 9.98)
+position = Vector2(19.305, 14.395)
 _controls = ExtResource("6_wbecm")
 _playerTexture = ExtResource("7_acwt3")
 
 [node name="Player2" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(987.625, 11.03)
+position = Vector2(778.055, 16.46)
 _controls = ExtResource("7_j57rf")
 _playerTexture = ExtResource("9_v8k0o")
