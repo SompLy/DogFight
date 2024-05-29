@@ -31,23 +31,17 @@ public partial class Throwable : Node2D
 		while ( Mathf.Abs( velocity.Y ) > 0 )
 		{
 			var newPosition = Position +
-			                  ( Vector2.Down * Mathf.Sign( velocity.Y ) * Mathf.Min( Mathf.Abs( velocity.Y ), 1.0f ) );
+			                  Vector2.Down * Mathf.Sign( velocity.Y ) * Mathf.Min( Mathf.Abs( velocity.Y ), 1.0f );
 			var normal = _map.CollisionNormalPoint( newPosition );
 			velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( velocity.Y ) ) * Mathf.Sign( velocity.Y );
 
 			if ( normal == Vector2.One )
 				break;
 
-			if ( Mathf.Sign( normal.Y ) != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
+			if ( normal.Y != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
 			{
 				_dir.Y     *= -0.5f;
 				velocity.Y *= -0.5f;
-			}
-
-			if ( Mathf.Sign( normal.X ) != 0 && Mathf.Sign( _dir.X ) != Mathf.Sign( normal.X ) )
-			{
-				_dir.X     *= -0.8f;
-				velocity.X *= -0.8f;
 			}
 
 			Position = newPosition;
@@ -63,13 +57,7 @@ public partial class Throwable : Node2D
 			if ( normal == Vector2.One )
 				break;
 
-			if ( Mathf.Sign( normal.Y ) != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
-			{
-				_dir.Y     *= -0.5f;
-				velocity.Y *= -0.5f;
-			}
-
-			if ( Mathf.Sign( normal.X ) != 0 && Mathf.Sign( _dir.X ) != Mathf.Sign( normal.X ) )
+			if ( normal.X != 0 && Mathf.Sign( _dir.X ) != Mathf.Sign( normal.X ) )
 			{
 				_dir.X     *= -0.8f;
 				velocity.X *= -0.8f;
