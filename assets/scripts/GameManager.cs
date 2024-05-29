@@ -14,8 +14,11 @@ public partial class GameManager : Node
 	public bool UseMouse = false;
 	public int CurrentRound = 0;
 
-	public override void _Process(double delta)
+	public override void _Input( InputEvent @event )
 	{
-		GD.Print( GameMode );
+		if ( @event is InputEventKey { Keycode: Key.M, Pressed: true } )
+		{
+			UseMouse = !UseMouse;
+		}
 	}
 }

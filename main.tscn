@@ -35,6 +35,6 @@ _controls = ExtResource("6_wbecm")
 _playerTexture = ExtResource("7_acwt3")
 
 [node name="Player2" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(778.055, 16.46)
+position = Vector2(687, 18)
 _controls = ExtResource("7_j57rf")
 _playerTexture = ExtResource("9_v8k0o")
