@@ -6,8 +6,10 @@ public partial class Projectile : Node2D
 	private Map _map;
 
 	private const float GRAVITY = 0.1f;
-	private Vector2 _dir;
+	public Vector2 Dir;
 
+	public bool Hit = false;
+	
 	public override void _Ready()
 	{
 		_map = GetNode<Map>( "../Map" );
@@ -15,18 +17,18 @@ public partial class Projectile : Node2D
 
 	public void Init( Vector2 dir )
 	{
-		_dir = dir.Normalized() * Mathf.Max( 2, dir.Length() * 0.01f );
+		Dir = dir.Normalized() * Mathf.Max( 2, dir.Length() * 0.01f );
 	}
 
 	public override void _PhysicsProcess( double delta )
 	{
-		_dir.Y += GRAVITY / Mathf.Max( _dir.Length(), 1 );
+		Dir.Y += GRAVITY / Mathf.Max( Dir.Length(), 1 );
 		ApplyVelocityWithCollisions ();
 	}
 
 	private void ApplyVelocityWithCollisions ()
 	{
-		Vector2 velocity = _dir;
+		Vector2 velocity = Dir;
 
 		while ( Mathf.Abs( velocity.Y ) > 0 )
 		{
@@ -38,10 +40,8 @@ public partial class Projectile : Node2D
 			if ( normal == Vector2.One )
 				break;
 			
-			if ( normal.Y != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
-			{
-				
-			}
+			if ( normal != Vector2.Zero )
+				Hit = true;
 			
 			LookAt( newPosition );
 			Position = newPosition;
@@ -57,9 +57,8 @@ public partial class Projectile : Node2D
 			if ( normal == Vector2.One )
 				break;
 
-			LookAt( newPosition );
 			Position = newPosition;
-
+			LookAt( newPosition );
 		}
 		
 	}
