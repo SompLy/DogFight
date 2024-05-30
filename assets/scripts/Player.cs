@@ -10,7 +10,7 @@ public partial class Player : CharacterBody2D
 	private Map				 _map;
 
 	[Export] public  int		Health				= 3;
-	[Export] private float		_attackPowerBazooka	= 60.0f;
+	[Export] private float		_attackPowerBazooka	= 40.0f;
 	[Export] private float		_attackPowerGrenade	= 7.0f;
 			 public  Vector2	InternalVelocity 	= Vector2.Zero;
 			 public  bool		IsAirborne		 	= true;
@@ -78,10 +78,27 @@ public partial class Player : CharacterBody2D
 					break;
 			}
 		}
+		if ( Input.IsActionPressed( _controls.Switch ) )
+		{
+			switch ( _currentWeapon )
+			{
+				case EWeapon.Bazooka:
+					_currentWeapon = EWeapon.Grenade;
+					break;
+				case EWeapon.Grenade:
+					_currentWeapon = EWeapon.Molotov;
+					break;
+				case EWeapon.Molotov:
+					_currentWeapon = EWeapon.Bazooka;
+					break;
+				default:
+					break;
+			}
+		}
 		if ( Input.IsActionPressed( _controls.AimLeft ) )
-			_rotationPoint.RotationDegrees -= 30;
+			_rotationPoint.RotationDegrees -= 22.5f;
 		if ( Input.IsActionPressed( _controls.AimRight ) )
-			_rotationPoint.RotationDegrees += 30;
+			_rotationPoint.RotationDegrees += 22.5f;
 	}
 
 	public void InstantiateGrenade( Vector2 dir )

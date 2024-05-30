@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bifh03v7r6pp7"]
+[gd_scene load_steps=4 format=3 uid="uid://bifh03v7r6pp7"]
 
 [ext_resource type="Script" path="res://assets/scripts/Weapons/Bazooka.cs" id="1_epic0"]
 [ext_resource type="Texture2D" uid="uid://m6mr8lxakxq6" path="res://assets/sprites/Weapon_AimArrow.png" id="2_y31po"]
+[ext_resource type="PackedScene" uid="uid://cda0isymqf56r" path="res://assets/ParticleEffects/particle_bazooka.tscn" id="3_8haia"]
 
 [node name="Bazooka" type="Node2D"]
 script = ExtResource("1_epic0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
+scale = Vector2(0.200246, 1)
 texture = ExtResource("2_y31po")
+
+[node name="BazookaParticle" parent="." instance=ExtResource("3_8haia")]
+position = Vector2(1, 0)

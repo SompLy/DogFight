@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmhmwd6jnqatf"]
+[gd_scene load_steps=11 format=3 uid="uid://dmhmwd6jnqatf"]
 
 [ext_resource type="PackedScene" uid="uid://bbf161rho30d0" path="res://map.tscn" id="1_0ka7u"]
 [ext_resource type="Script" path="res://assets/scripts/Managers/CameraTargetsManager.cs" id="1_u0nos"]
@@ -10,9 +10,29 @@
 [ext_resource type="Resource" uid="uid://buurfqbo31c3o" path="res://assets/Resource/p2_Controls.tres" id="7_j57rf"]
 [ext_resource type="Texture2D" uid="uid://d2su4chgj4jsc" path="res://assets/sprites/Dog_golden.png" id="9_v8k0o"]
 
+[sub_resource type="Environment" id="Environment_ewrb1"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 2.0
+glow_blend_mode = 0
+glow_hdr_scale = 0.9
+adjustment_enabled = true
+
 [node name="Main" type="Node2D"]
 
+[node name="Lightning" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lightning"]
+environment = SubResource("Environment_ewrb1")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lightning"]
+energy = 0.3
+blend_mode = 1
+range_item_cull_mask = 0
+
 [node name="Map" parent="." instance=ExtResource("1_0ka7u")]
+light_mask = 2
+visibility_layer = 2
 
 [node name="CameraTargetsManager" type="Node" parent="."]
 script = ExtResource("1_u0nos")
@@ -30,11 +50,14 @@ text = "FPS"
 script = ExtResource("3_sf11s")
 
 [node name="Player1" parent="." instance=ExtResource("2_012hh")]
-position = Vector2(19.305, 14.395)
+self_modulate = Color(1.5, 1, 1, 1)
+position = Vector2(31, 24)
 _controls = ExtResource("6_wbecm")
 _playerTexture = ExtResource("7_acwt3")
 
 [node name="Player2" parent="." instance=ExtResource("2_012hh")]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(687, 18)
 _controls = ExtResource("7_j57rf")
 _playerTexture = ExtResource("9_v8k0o")
