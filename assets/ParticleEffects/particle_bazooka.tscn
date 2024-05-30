@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cda0isymqf56r"]
+
+[sub_resource type="Curve" id="Curve_m7blu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sy6fl"]
+curve = SubResource("Curve_m7blu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uvgeg"]
+particle_flag_disable_z = true
+gravity = Vector3(-1000, 20, 0)
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_sy6fl")
+color = Color(0.913725, 0.721569, 0.184314, 1)
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 18.94
+turbulence_noise_scale = 20.67
+turbulence_noise_speed_random = 4.0
+turbulence_influence_max = 0.144
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+self_modulate = Color(5, 4, 4, 1)
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_uvgeg")
+randomness = 0.5
+trail_lifetime = 0.2

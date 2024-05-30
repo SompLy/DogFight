@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddfffiesiet5a"]
+
+[ext_resource type="Script" path="res://assets/ParticleEffects/RemoveParticle.cs" id="1_8blfp"]
+
+[sub_resource type="Curve" id="Curve_0utpu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wog5d"]
+curve = SubResource("Curve_0utpu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ythwo"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 11.79
+initial_velocity_max = 257.58
+gravity = Vector3(0, 100, 0)
+scale_min = 2.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_wog5d")
+color = Color(0.74826, 0.585004, 0.11168, 1)
+hue_variation_max = 0.05
+turbulence_enabled = true
+turbulence_noise_strength = 10.0
+turbulence_noise_scale = 4.0
+turbulence_noise_speed_random = 4.0
+turbulence_influence_max = 0.144
+
+[node name="GPUParticleExplosion" type="GPUParticles2D"]
+self_modulate = Color(5, 4, 4, 1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ythwo")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+trail_lifetime = 0.2
+script = ExtResource("1_8blfp")
+
+[connection signal="finished" from="." to="." method="_OnFinished"]
