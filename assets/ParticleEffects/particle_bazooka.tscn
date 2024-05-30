@@ -26,4 +26,5 @@ self_modulate = Color(5, 4, 4, 1)
 amount = 60
 process_material = SubResource("ParticleProcessMaterial_uvgeg")
 randomness = 0.5
+fixed_fps = 60
 trail_lifetime = 0.2

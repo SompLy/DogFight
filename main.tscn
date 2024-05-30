@@ -26,7 +26,7 @@ adjustment_enabled = true
 environment = SubResource("Environment_ewrb1")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lightning"]
-energy = 0.3
+energy = 0.4
 blend_mode = 1
 range_item_cull_mask = 0
 
