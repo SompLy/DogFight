@@ -8,6 +8,7 @@
 script = ExtResource("1_epic0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 rotation = 1.5708
 scale = Vector2(0.200246, 1)
 texture = ExtResource("2_y31po")

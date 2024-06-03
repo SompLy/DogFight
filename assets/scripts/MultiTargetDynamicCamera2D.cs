@@ -15,6 +15,8 @@ public partial class MultiTargetDynamicCamera2D : Camera2D
 
 	private Vector2 _screenSize;
 
+	public List<Vector2> GetTargets() { return _targets; }
+	
 	public override void _Ready()
 	{
 		_screenSize = GetViewportRect().Size;
@@ -48,16 +50,17 @@ public partial class MultiTargetDynamicCamera2D : Camera2D
 
 	public void UpdateTarget( Vector2 target, int index )
 	{
-		_targets[ index ] = target;
+		if ( _targets.Count > index )
+			_targets[ index ] = target;
 	}
 	public void AddTarget( Vector2 target )
 	{
 		if ( !_targets.Contains( target ) )
 			_targets.Add( target );
 	}
-	public void RemoveTarget( Vector2 target )
+	public void RemoveTarget( int index)
 	{
-		if ( !_targets.Contains( target ) )
-			_targets.Remove( target );
+		if ( _targets.Count > index )
+			_targets.RemoveAt( index );
 	}
 }
