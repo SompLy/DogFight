@@ -10,13 +10,13 @@ public partial class Map : Node2D
 	private          List<float> _lineList   = new List<float>();
 	private readonly Color       TRANSPARENT = new Color( 0, 0, 0, 0 );
 
-	private List<Player> _players = new List<Player>();
+	private List<PlayerController> _players = new List<PlayerController>();
 	
 	public override void _Ready()
 	{
 		_fg = GetNode<Sprite2D>( "FG" );
 		_bg = GetNode<Sprite2D>( "BG" );
-		_players.AddRange( new []{ GetNode<Player>( "../Player1" ), GetNode<Player>( "../Player2" ) } );
+		_players.AddRange( new []{ GetNode<PlayerController>( "../Player1" ), GetNode<PlayerController>( "../Player2" ) } );
 		
 		_GenerateMap();
 		GetNode<Collision>( "Collision" ).InitMap( _lineList, _fg.Texture.GetWidth(), _fg.Texture.GetHeight() );
@@ -44,8 +44,10 @@ public partial class Map : Node2D
 
 		for ( int x = 0; x < fgImage.GetWidth(); x++ )
 		{
-			float high = ( ( float )( noise.GetNoise1D( x ) + 1 ) * fgImage.GetHeight() * 0.4f ) +
-			             fgImage.GetHeight() * 0.08f;
+			// + 1 to not get negative numbers
+			// Multiply to move the lowest point possible
+			// Offset to get more space at the top
+			float high = ( noise.GetNoise1D( x ) + 1 ) * fgImage.GetHeight() * 0.1f + fgImage.GetHeight() * 0.3f;
 
 			_lineList.Add( high );
 
@@ -63,6 +65,7 @@ public partial class Map : Node2D
 	public void Explosion( Vector2 pos, int radius )
 	{
 		Image fgImage = _fg.Texture.GetImage();
+		Image bgImage = _bg.Texture.GetImage();
 		
 		GetNode<Collision>( "Collision" ).Explosion( pos, radius );
 		
@@ -78,7 +81,12 @@ public partial class Map : Node2D
 					continue;
 				if ( pixel.Y < 0 || pixel.Y >= fgImage.GetHeight() )
 					continue;
-				fgImage.SetPixel( ( int )pixel.X, ( int )pixel.Y, TRANSPARENT );
+
+				Color colot = bgImage.GetPixel( (int)pixel.X, (int)pixel.Y );
+				colot.R *= 0.2f;
+				colot.G *= 0.2f;
+				colot.B *= 0.2f;
+				fgImage.SetPixel( ( int )pixel.X, ( int )pixel.Y, colot );
 
 				if ( IsInstanceValid( _players[ 0 ] ) &&  
 				     Mathf.Round( _players[ 0 ].Position.X ) == Mathf.Round( pixel.X ) &&

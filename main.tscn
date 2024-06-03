@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bbf161rho30d0" path="res://map.tscn" id="1_0ka7u"]
 [ext_resource type="Script" path="res://assets/scripts/Managers/CameraTargetsManager.cs" id="1_u0nos"]
-[ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player.tscn" id="2_012hh"]
+[ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player_controller.tscn" id="2_012hh"]
 [ext_resource type="PackedScene" uid="uid://dgxxnwpgpeo0f" path="res://multi_target_dynamic_camera_2d.tscn" id="2_kpes7"]
 [ext_resource type="Script" path="res://assets/scripts/PerformanceStats.cs" id="3_sf11s"]
 [ext_resource type="Resource" uid="uid://cdsbevbrrumu3" path="res://assets/Resource/p1_Controls.tres" id="6_wbecm"]
-[ext_resource type="Texture2D" uid="uid://ghf3cigropec" path="res://assets/sprites/Dog_collie.png" id="7_acwt3"]
+[ext_resource type="Texture2D" uid="uid://ghf3cigropec" path="res://assets/sprites/Dog_Collie.png" id="7_acwt3"]
 [ext_resource type="Resource" uid="uid://buurfqbo31c3o" path="res://assets/Resource/p2_Controls.tres" id="7_j57rf"]
-[ext_resource type="Texture2D" uid="uid://d2su4chgj4jsc" path="res://assets/sprites/Dog_golden.png" id="9_v8k0o"]
+[ext_resource type="Texture2D" uid="uid://d2su4chgj4jsc" path="res://assets/sprites/Dog_Golden.png" id="9_v8k0o"]
 
 [sub_resource type="Environment" id="Environment_ewrb1"]
 background_mode = 3
@@ -38,6 +38,7 @@ visibility_layer = 2
 script = ExtResource("1_u0nos")
 
 [node name="MultiTargetDynamicCamera2D" parent="." instance=ExtResource("2_kpes7")]
+position = Vector2(600, 252)
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 
@@ -51,13 +52,13 @@ script = ExtResource("3_sf11s")
 
 [node name="Player1" parent="." instance=ExtResource("2_012hh")]
 self_modulate = Color(1.5, 1, 1, 1)
-position = Vector2(31, 24)
-_controls = ExtResource("6_wbecm")
+position = Vector2(178, 131)
+Controls = ExtResource("6_wbecm")
 _playerTexture = ExtResource("7_acwt3")
 
 [node name="Player2" parent="." instance=ExtResource("2_012hh")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(687, 18)
-_controls = ExtResource("7_j57rf")
+position = Vector2(982, 132)
+Controls = ExtResource("7_j57rf")
 _playerTexture = ExtResource("9_v8k0o")
