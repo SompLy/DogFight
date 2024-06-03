@@ -48,8 +48,8 @@ public partial class Collision : Node
 		{
 			// Checks all pixels around pos with world bounds and collision array
 			Vector2 observedPixel = pos + direction;
-			if ( observedPixel.X                                               < 0 || observedPixel.X >= mapWidth  ||
-			     observedPixel.Y                                               < 0 || observedPixel.Y >= mapHeight ||
+			if ( observedPixel.X < 0 || observedPixel.X >= mapWidth  ||
+			     observedPixel.Y < 0 || observedPixel.Y >= mapHeight ||
 			     collision[ ( int )observedPixel.X ][ ( int )observedPixel.Y ] > 0 )
 				normal += direction * -1;
 		}
