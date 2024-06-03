@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ghf3cigropec"
-path="res://.godot/imported/Dog_Collie.png-e45554cb5553b4ac7c238888b06d7cd3.ctex"
+uid="uid://b8ahw43pusirh"
+path="res://.godot/imported/Weapon_Bazooka.png-9281f8c32b7a18ae5d55f6fd24b9f1e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Dog_Collie.png"
-dest_files=["res://.godot/imported/Dog_Collie.png-e45554cb5553b4ac7c238888b06d7cd3.ctex"]
+source_file="res://assets/sprites/Weapon_Bazooka.png"
+dest_files=["res://.godot/imported/Weapon_Bazooka.png-9281f8c32b7a18ae5d55f6fd24b9f1e2.ctex"]
 
 [params]
 

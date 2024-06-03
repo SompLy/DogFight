@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg6xvdremillt"]
+
+[ext_resource type="Texture2D" uid="uid://0rpxj1gfir1h" path="res://assets/sprites/Weapon_Granade.png" id="1_a7wuv"]
+
+[node name="GrenadeSprite" type="Sprite2D"]
+position = Vector2(1.19209e-07, -1.19209e-07)
+scale = Vector2(0.47692, 0.48434)
+texture = ExtResource("1_a7wuv")
