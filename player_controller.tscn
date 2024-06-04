@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://banl63ixyoheq"]
 
-[ext_resource type="Script" path="res://assets/scripts/Controllers/PlayerController.cs" id="1_ccjs0"]
+[ext_resource type="Script" path="res://assets/scripts/Controllers/PlayerController.cs" id="1_84kbo"]
 [ext_resource type="Texture2D" uid="uid://dlu2p4skf5yct" path="res://assets/sprites/Dog_Red.png" id="2_gb6f8"]
 [ext_resource type="Texture2D" uid="uid://m6mr8lxakxq6" path="res://assets/sprites/Weapon_AimArrow.png" id="3_i6qlt"]
 [ext_resource type="Script" path="res://assets/scripts/HoldingItem.cs" id="4_703p2"]
@@ -10,7 +10,7 @@ radius = 9.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1, 0)
-script = ExtResource("1_ccjs0")
+script = ExtResource("1_84kbo")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_gb6f8")

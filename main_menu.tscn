@@ -13,31 +13,42 @@ script = ExtResource("1_pa80j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 494.0
-offset_right = 225.0
-offset_bottom = 613.0
-alignment = 1
+offset_left = 66.0
+offset_top = 408.0
+offset_right = 326.0
+offset_bottom = 593.0
 
 [node name="Player vs Player" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
 text = "Player vs Player"
 
+[node name="Player vs AI Tournament" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_type_variation = &"FlatButton"
+text = "Player vs Computer Tournament
+"
+
 [node name="Player vs AI" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
 text = "Player vs Computer"
 
 [node name="Exit Game" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
 text = "Exit Game
 "
 
 [connection signal="pressed" from="VBoxContainer/Player vs Player" to="." method="_on_player_vs_player_pressed"]
+[connection signal="pressed" from="VBoxContainer/Player vs AI Tournament" to="." method="_on_player_vs_ai_tournament_pressed"]
 [connection signal="pressed" from="VBoxContainer/Player vs AI" to="." method="_on_player_vs_ai_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
