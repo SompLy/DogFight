@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_13j48")
-PlayerIndex = 1
 MoveLeft = "p2_left"
 MoveRight = "p2_right"
 Jump = "p2_up"

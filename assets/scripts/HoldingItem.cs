@@ -3,29 +3,29 @@ using System;
 
 public partial class HoldingItem : Sprite2D
 {
-	private Node2D _rotationPoint;
-	private PlayerController _playerController;
-	private Sprite2D _spriteInstance;
+	private Node2D	   _rotationPoint;
+	private Controller _controller;
+	private Sprite2D   _spriteInstance;
 
 	public override void _Ready()
 	{
 		_rotationPoint = GetNode<Node2D>( "../RotationPoint" );
-		_playerController        = ( PlayerController )GetParent();
+		_controller	   = ( Controller )GetParent();
 	}
 
 	public override void _Process( double delta )
 	{
-		if ( _playerController.ShouldSwitchWeapon )
+		if ( _controller.ShouldSwitchWeapon )
 		{
-			_playerController.ShouldSwitchWeapon = false;
+			_controller.ShouldSwitchWeapon = false;
 			
-			switch ( _playerController.CurrentWeapon )
+			switch ( _controller.CurrentWeapon )
 			{
-				case PlayerController.EWeapon.Bazooka:
+				case Controller.EWeapon.Bazooka:
 					_spriteInstance =
 						( Sprite2D )GD.Load<PackedScene>( "res://assets/sprites/bazooka_sprite.tscn" ).Instantiate();
 					break;
-				case PlayerController.EWeapon.Grenade:
+				case Controller.EWeapon.Grenade:
 					_spriteInstance =
 						( Sprite2D )GD.Load<PackedScene>( "res://assets/sprites/grenade_sprite.tscn" ).Instantiate();
 					break;

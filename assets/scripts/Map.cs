@@ -10,13 +10,12 @@ public partial class Map : Node2D
 	private          List<float> _lineList   = new List<float>();
 	private readonly Color       TRANSPARENT = new Color( 0, 0, 0, 0 );
 
-	private List<PlayerController> _players = new List<PlayerController>();
+	public List<Controller> Players = new List<Controller>();
 	
 	public override void _Ready()
 	{
 		_fg = GetNode<Sprite2D>( "FG" );
 		_bg = GetNode<Sprite2D>( "BG" );
-		_players.AddRange( new []{ GetNode<PlayerController>( "../Player1" ), GetNode<PlayerController>( "../Player2" ) } );
 		
 		_GenerateMap();
 		GetNode<Collision>( "Collision" ).InitMap( _lineList, _fg.Texture.GetWidth(), _fg.Texture.GetHeight() );
@@ -64,6 +63,10 @@ public partial class Map : Node2D
 
 	public void Explosion( Vector2 pos, int radius )
 	{
+		if ( Players.Count < 1 )
+			Players.AddRange( new []{ GetNode<Controller>( "../Player1" ),
+				GetNode<Controller>( "../Player2" ) } );
+		
 		Image fgImage = _fg.Texture.GetImage();
 		Image bgImage = _bg.Texture.GetImage();
 		
@@ -82,25 +85,26 @@ public partial class Map : Node2D
 				if ( pixel.Y < 0 || pixel.Y >= fgImage.GetHeight() )
 					continue;
 
+				// Sample from toher image and make abit darker so it gives a cool effect
 				Color colot = bgImage.GetPixel( (int)pixel.X, (int)pixel.Y );
-				colot.R *= 0.2f;
-				colot.G *= 0.2f;
-				colot.B *= 0.2f;
+				colot.R *= 0.3f;
+				colot.G *= 0.3f;
+				colot.B *= 0.3f;
 				fgImage.SetPixel( ( int )pixel.X, ( int )pixel.Y, colot );
 
-				if ( IsInstanceValid( _players[ 0 ] ) &&  
-				     Mathf.Round( _players[ 0 ].Position.X ) == Mathf.Round( pixel.X ) &&
-				     Mathf.Round( _players[ 0 ].Position.Y ) == Mathf.Round( pixel.Y ) )
+				if ( IsInstanceValid( Players[ 0 ] ) &&  
+				     Mathf.Round( Players[ 0 ].Position.X ) == Mathf.Round( pixel.X ) &&
+				     Mathf.Round( Players[ 0 ].Position.Y ) == Mathf.Round( pixel.Y ) )
 				{
-					_players[ 0 ].InternalVelocity += new Vector2( 0.0f, -7.0f );
-					_players[ 0 ].Health			 -= 1;
+					Players[ 0 ].InternalVelocity += new Vector2( 0.0f, -7.0f );
+					Players[ 0 ].Health			 -= 1;
 				}          
-				if ( IsInstanceValid( _players[ 1 ] ) && 
-					Mathf.Round( _players[ 1 ].Position.X ) == Mathf.Round( pixel.X ) &&
-					Mathf.Round( _players[ 1 ].Position.Y ) == Mathf.Round( pixel.Y ) )
+				if ( IsInstanceValid( Players[ 1 ] ) && 
+					Mathf.Round( Players[ 1 ].Position.X ) == Mathf.Round( pixel.X ) &&
+					Mathf.Round( Players[ 1 ].Position.Y ) == Mathf.Round( pixel.Y ) )
 				{                 
-					_players[ 1 ].InternalVelocity += new Vector2( 0.0f, -7.0f );
-					_players[ 1 ].Health           -= 1;
+					Players[ 1 ].InternalVelocity += new Vector2( 0.0f, -7.0f );
+					Players[ 1 ].Health           -= 1;
 				}
 			}
 		}

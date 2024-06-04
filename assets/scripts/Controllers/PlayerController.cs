@@ -3,15 +3,16 @@ using System;
 
 public partial class PlayerController : Controller
 {
+	[Export] public  PlayerControls  Controls;
+	
 	public override void _Ready()
 	{
 		base._Ready();
-		
 	}
 	public override void _Input( InputEvent @event )
 	{
 		// Mouse & keyboard
-		if ( @event is InputEventMouseButton { Pressed: true } && _gameManager.UseMouse )
+		if ( @event is InputEventMouseButton { Pressed: true } && _GameManager.UseMouse )
 			InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
 		// Keyboard only
 		if ( Input.IsActionPressed( Controls.Attack ) )
@@ -19,10 +20,10 @@ public partial class PlayerController : Controller
 			switch ( CurrentWeapon )
 			{
 				case EWeapon.Bazooka:
-					InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * _attackPowerBazooka );
+					InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerBazooka );
 					break;
 				case EWeapon.Grenade:
-					InstantiateGrenade( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * _attackPowerGrenade );
+					InstantiateGrenade( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerGrenade );
 					break;
 				case EWeapon.Molotov:
 					//InstantiateMolotov( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
@@ -63,6 +64,11 @@ public partial class PlayerController : Controller
 	}
 	public override void _PhysicsProcess(double delta)
 	{
+		if ( Input.IsActionJustPressed( Controls.Jump ) && !ShouldJump )
+		{
+			ShouldJump = true;
+		}
+
 		Walk = Convert.ToInt32( Input.GetActionStrength( Controls.MoveRight ) ) -
 		       Convert.ToInt32( Input.GetActionStrength( Controls.MoveLeft ) );
 		

@@ -8,7 +8,7 @@ public partial class Bazooka : Projectile
 	public override void _Ready()
 	{
 		base._Ready();
-		_map   = GetNode<Map>( "../Map" );
+		_map = GetNode<Map>( "../Map" );
 	}
 
 	public override void _PhysicsProcess( double delta )
