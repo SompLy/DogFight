@@ -6,13 +6,15 @@ public partial class GameManager : Node
 	public enum EGameMode
 	{
 		PvP,
-		PvAi
+		PvAISingle,
+		PvAITournament
 	}
 	
 	public EGameMode GameMode = EGameMode.PvP;
 	
 	public bool UseMouse = false;
 	public int CurrentRound = 0;
+	public int CurrentTournamentOpponent = 0;
 	public int Player1Score = 0;
 	public int Player2Score = 0;
 	
