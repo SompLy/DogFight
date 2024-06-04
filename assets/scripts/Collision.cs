@@ -41,7 +41,7 @@ public partial class Collision : Node
 			return Vector2.Up;
 
 		if ( collision[ ( int )pos.X ][ ( int )pos.Y ] > 0 )
-			return Vector2.One;
+			return Vector2.Up;
 
 		Vector2 normal = Vector2.Zero;
 		foreach ( Vector2 direction in new Vector2[] { Vector2.Up, Vector2.Down, Vector2.Left, Vector2.Right } )
