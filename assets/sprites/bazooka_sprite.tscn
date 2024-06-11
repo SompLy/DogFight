@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b8ahw43pusirh" path="res://assets/sprites/Weapon_Bazooka.png" id="1_k7ku0"]
 
 [node name="BazookaSprite" type="Sprite2D"]
-position = Vector2(0.437501, -0.5625)
-scale = Vector2(0.487903, 0.443182)
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(0.550403, 0.676136)
 texture = ExtResource("1_k7ku0")

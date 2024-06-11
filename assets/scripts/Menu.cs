@@ -14,7 +14,6 @@ public partial class Menu : Control
 		_gameManager = GetNode<GameManager>( "/root/GameManager" );
 		_gameScene   = ResourceLoader.Load<PackedScene>( "res://main.tscn" );
 		_player      = ResourceLoader.Load<PackedScene>( "res://player_controller.tscn" );
-		_enemy       = ResourceLoader.Load<PackedScene>( "res://enemy_controller.tscn" );
 		_map         = ResourceLoader.Load<PackedScene>( "res://map.tscn" );
 	}
 
@@ -22,7 +21,6 @@ public partial class Menu : Control
 	{
 		_gameManager.GameMode = GameManager.EGameMode.PvP;
 		_gameManager.UseMouse = false;
-
 		GetTree().ChangeSceneToPacked( _gameScene );
 	}
 

@@ -13,6 +13,7 @@ config_version=5
 config/name="Dog-Fight"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+run/max_fps=240
 boot_splash/show_image=false
 boot_splash/image="res://assets/sprites/Dog_Collie.png"
 boot_splash/use_filter=false
@@ -24,11 +25,22 @@ GameManager="*res://assets/scripts/Managers/GameManager.cs"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/initial_position_type=2
+window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="DogFight"
+
+[file_customization]
+
+folder_colors={
+"res://assets/scripts/": "purple",
+"res://assets/sprites/": "pink"
+}
 
 [filesystem]
 

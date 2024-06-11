@@ -1,6 +1,367 @@
-[gd_scene load_steps=2 format=3 uid="uid://la1a7cmnd1fg"]
+[gd_scene load_steps=56 format=3 uid="uid://la1a7cmnd1fg"]
 
 [ext_resource type="Script" path="res://assets/scripts/Menu.cs" id="1_pa80j"]
+[ext_resource type="Texture2D" uid="uid://byyrlgvpg4kov" path="res://assets/sprites/Dog-Fight-logo.png" id="2_ud38u"]
+[ext_resource type="Texture2D" uid="uid://cxvcew2o77nxs" path="res://assets/sprites/Dog-Fight-logo-shit-niklas.png" id="3_iwy01"]
+[ext_resource type="Texture2D" uid="uid://dthyelyce1f1t" path="res://assets/sprites/Niklas/0 -25.png" id="4_wrhhu"]
+[ext_resource type="Texture2D" uid="uid://bjqgkqioy0po1" path="res://assets/sprites/Niklas/1 -24.png" id="5_heb2i"]
+[ext_resource type="Texture2D" uid="uid://digq4u4kv4pby" path="res://assets/sprites/Niklas/2 -23.png" id="6_jh7sh"]
+[ext_resource type="Texture2D" uid="uid://bb45qr0dueb66" path="res://assets/sprites/Niklas/3 -22.png" id="7_hxhsn"]
+[ext_resource type="Texture2D" uid="uid://cfwyuivvi8qh3" path="res://assets/sprites/Niklas/4 -21.png" id="8_1wkdi"]
+[ext_resource type="Texture2D" uid="uid://bkfl8s1d1d8k0" path="res://assets/sprites/Niklas/5 -20.png" id="9_5tsm0"]
+[ext_resource type="Texture2D" uid="uid://cjai2nuw4f1qy" path="res://assets/sprites/Niklas/6 -19.png" id="10_u0ydb"]
+[ext_resource type="Texture2D" uid="uid://cudia7xwrqa1o" path="res://assets/sprites/Niklas/7 -18.png" id="11_38008"]
+[ext_resource type="Texture2D" uid="uid://d0ivcfhhysmve" path="res://assets/sprites/Niklas/8 -17.png" id="12_tb0yt"]
+[ext_resource type="Texture2D" uid="uid://bt54vwd6cumco" path="res://assets/sprites/Niklas/9 -16.png" id="13_t820r"]
+[ext_resource type="Texture2D" uid="uid://ijr802hyqcok" path="res://assets/sprites/Niklas/10 -15.png" id="14_u6xaf"]
+[ext_resource type="Texture2D" uid="uid://cla5snd1qmx75" path="res://assets/sprites/Niklas/11 -14.png" id="15_yuvvv"]
+[ext_resource type="Texture2D" uid="uid://cswmj7eocu08p" path="res://assets/sprites/Niklas/12 -13.png" id="16_a13p7"]
+[ext_resource type="Texture2D" uid="uid://c6mh3u6rejew3" path="res://assets/sprites/Niklas/13 -12.png" id="17_raq7x"]
+[ext_resource type="Texture2D" uid="uid://csgsdt0hst0py" path="res://assets/sprites/Niklas/14 -11.png" id="18_amcev"]
+[ext_resource type="Texture2D" uid="uid://drpm0ybs6vjst" path="res://assets/sprites/Niklas/15 -10.png" id="19_ehhbw"]
+[ext_resource type="Texture2D" uid="uid://d08a1filujs2x" path="res://assets/sprites/Niklas/16 -9.png" id="20_r2omr"]
+[ext_resource type="Texture2D" uid="uid://x8bl6my5y3h4" path="res://assets/sprites/Niklas/17 -8.png" id="21_0fyl5"]
+[ext_resource type="Texture2D" uid="uid://bupr08tjx8lw5" path="res://assets/sprites/Niklas/18 -7.png" id="22_egpl1"]
+[ext_resource type="Texture2D" uid="uid://c3s78jhfec60s" path="res://assets/sprites/Niklas/19 -6.png" id="23_avmhn"]
+[ext_resource type="Texture2D" uid="uid://bva0jdi5756yv" path="res://assets/sprites/Niklas/20 -5.png" id="24_jvgyc"]
+[ext_resource type="Texture2D" uid="uid://c8xbrdfhlwdq4" path="res://assets/sprites/Niklas/22 -4.png" id="25_w14ji"]
+[ext_resource type="Texture2D" uid="uid://w6c0ivlyigeg" path="res://assets/sprites/Niklas/23 -3.png" id="26_5ruam"]
+[ext_resource type="Texture2D" uid="uid://bnn6rabnkxmtn" path="res://assets/sprites/Niklas/24 -2.png" id="27_r5wil"]
+[ext_resource type="Texture2D" uid="uid://b48mx8e8d0qr0" path="res://assets/sprites/Niklas/25 -1.png" id="28_yins0"]
+[ext_resource type="Texture2D" uid="uid://ctisfll2w7gs8" path="res://assets/sprites/Niklas/26 0.png" id="29_urxkb"]
+[ext_resource type="Texture2D" uid="uid://rn6q3tttldmk" path="res://assets/sprites/Niklas/27 1.png" id="30_3tcw0"]
+[ext_resource type="Texture2D" uid="uid://cxqvjytbpaarv" path="res://assets/sprites/Niklas/28 2.png" id="31_peda0"]
+[ext_resource type="Texture2D" uid="uid://dc8jvotrfwt48" path="res://assets/sprites/Niklas/29 3.png" id="32_alg8m"]
+[ext_resource type="Texture2D" uid="uid://65t0qw8p8nud" path="res://assets/sprites/Niklas/30 4.png" id="33_beo5i"]
+[ext_resource type="Texture2D" uid="uid://caaamchc4mmic" path="res://assets/sprites/Niklas/31 5.png" id="34_bd3ny"]
+[ext_resource type="Texture2D" uid="uid://c1xfel0xj7xqv" path="res://assets/sprites/Niklas/32 6.png" id="35_1idgx"]
+[ext_resource type="Texture2D" uid="uid://dr8gw0l8wp6xu" path="res://assets/sprites/Niklas/33 7.png" id="36_w3rh7"]
+[ext_resource type="Texture2D" uid="uid://bdcabvfdgl11y" path="res://assets/sprites/Niklas/34 8.png" id="37_vefr5"]
+[ext_resource type="Texture2D" uid="uid://vn12wi8xb4kf" path="res://assets/sprites/Niklas/35 9.png" id="38_hjjgh"]
+[ext_resource type="Texture2D" uid="uid://dhjiku6wy5w3u" path="res://assets/sprites/Niklas/36 10.png" id="39_2mlor"]
+[ext_resource type="Texture2D" uid="uid://dua2uccy0tsmi" path="res://assets/sprites/Niklas/37 11.png" id="40_mb0ys"]
+[ext_resource type="Texture2D" uid="uid://dyqr7ppvii6ha" path="res://assets/sprites/Niklas/38 12.png" id="41_gm4kb"]
+[ext_resource type="Texture2D" uid="uid://0yygtadx6gb5" path="res://assets/sprites/Niklas/39 13.png" id="42_ec2x0"]
+[ext_resource type="Texture2D" uid="uid://bixtyv6x0mm4h" path="res://assets/sprites/Niklas/40 14.png" id="43_obvr3"]
+[ext_resource type="Texture2D" uid="uid://cgal3dr12qo5b" path="res://assets/sprites/Niklas/41 15.png" id="44_wubf6"]
+[ext_resource type="Texture2D" uid="uid://y05ava6gkni4" path="res://assets/sprites/Niklas/42 16.png" id="45_hfsmw"]
+[ext_resource type="Texture2D" uid="uid://dxk8lwj7iipue" path="res://assets/sprites/Niklas/43 17.png" id="46_lb00g"]
+[ext_resource type="Texture2D" uid="uid://ch7nmvnseng3n" path="res://assets/sprites/Niklas/44 18.png" id="47_ahlkd"]
+[ext_resource type="Texture2D" uid="uid://dsayxfp5tao8i" path="res://assets/sprites/Niklas/45 19.png" id="48_j32s1"]
+[ext_resource type="Texture2D" uid="uid://cnhrof7wclvmv" path="res://assets/sprites/Niklas/46 20.png" id="49_uhxcy"]
+[ext_resource type="Texture2D" uid="uid://dklovdghse2ab" path="res://assets/sprites/Niklas/47 21.png" id="50_sve4q"]
+[ext_resource type="Texture2D" uid="uid://df0n40ofjqd0u" path="res://assets/sprites/Niklas/48 22.png" id="51_rcj6c"]
+[ext_resource type="Texture2D" uid="uid://qedry4eaeey" path="res://assets/sprites/Niklas/49 23.png" id="52_0dtqk"]
+[ext_resource type="Texture2D" uid="uid://65sr6rmkw7sl" path="res://assets/sprites/Niklas/50 24.png" id="53_s58cx"]
+[ext_resource type="Texture2D" uid="uid://c0lho4p0stv73" path="res://assets/sprites/Niklas/51 25.png" id="54_2rl84"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ai34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wrhhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_heb2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jh7sh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hxhsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1wkdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5tsm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u0ydb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_38008")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tb0yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t820r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_u6xaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yuvvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_a13p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_raq7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_amcev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ehhbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_r2omr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0fyl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_egpl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_avmhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_jvgyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_w14ji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_5ruam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_r5wil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_yins0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_urxkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_3tcw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_peda0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_alg8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_beo5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_bd3ny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_1idgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_w3rh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_vefr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_hjjgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_2mlor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_mb0ys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_gm4kb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ec2x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_obvr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_wubf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_hfsmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_lb00g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_ahlkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_j32s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_uhxcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_sve4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_rcj6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_0dtqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_s58cx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_2rl84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_0dtqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_s58cx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_rcj6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_sve4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_uhxcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_j32s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_ahlkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_lb00g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_hfsmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_wubf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_obvr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ec2x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_gm4kb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_mb0ys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_2mlor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_hjjgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_vefr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_w3rh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_1idgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_bd3ny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_beo5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_alg8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_peda0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_3tcw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_urxkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_yins0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_r5wil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_5ruam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_w14ji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_jvgyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_avmhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_egpl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0fyl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_r2omr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ehhbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_amcev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_raq7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_a13p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yuvvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_u6xaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t820r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tb0yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_38008")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u0ydb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5tsm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1wkdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hxhsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jh7sh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_heb2i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,18 +372,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pa80j")
 
+[node name="Dog-fight-logo" type="Sprite2D" parent="."]
+position = Vector2(958.25, 406.5)
+scale = Vector2(1.546, 1.11905)
+texture = ExtResource("2_ud38u")
+
+[node name="Dog-fight-logo-shit-niklas" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(575.5, 324)
+scale = Vector2(0.930589, 0.910364)
+texture = ExtResource("3_iwy01")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(376, 157)
+scale = Vector2(0.626554, 0.295818)
+sprite_frames = SubResource("SpriteFrames_8ai34")
+autoplay = "default"
+speed_scale = 47.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(630, 558)
+scale = Vector2(0.593725, 0.18037)
+sprite_frames = SubResource("SpriteFrames_8ai34")
+autoplay = "default"
+speed_scale = 48.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1017, 385)
+scale = Vector2(0.402919, 0.699641)
+sprite_frames = SubResource("SpriteFrames_8ai34")
+autoplay = "default"
+speed_scale = 50.05
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 408.0
-offset_right = 326.0
-offset_bottom = 593.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.005
+anchor_bottom = 0.005
+offset_left = 88.0
+offset_top = 759.76
+offset_right = 554.0
+offset_bottom = 988.76
+grow_vertical = 0
+alignment = 1
 
 [node name="Player vs Player" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 29
 text = "Player vs Player"
 
 [node name="Player vs AI Tournament" type="Button" parent="VBoxContainer"]
@@ -30,6 +431,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 29
 text = "Player vs Computer Tournament
 "
 
@@ -38,6 +440,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 29
 text = "Player vs Computer"
 
 [node name="Exit Game" type="Button" parent="VBoxContainer"]
@@ -45,6 +448,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 29
 text = "Exit Game
 "
 
