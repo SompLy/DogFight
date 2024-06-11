@@ -10,7 +10,11 @@ public partial class FadeOutLabel : Control
 	{
 		_label = GetNode<Label>( "Label" );
 		_gameManager = GetNode<GameManager>( "/root/GameManager" );
-		_label.Text = "Dog Vs. " + GetParent().GetNode<Controller>( "Player2" ).Nickname + "\n" + 
+		if ( _gameManager.GameMode == GameManager.EGameMode.PvP )
+			_label.Text = "Dog Vs. Dawg" + "\n" + _gameManager.Player1Score + " | " + _gameManager.Player2Score;
+		else
+			_label.Text = GetParent().GetNode<Controller>( "Player1" ).Nickname + 
+			              "Vs. " + GetParent().GetNode<Controller>( "Player2" ).Nickname + "\n" + 
 		              _gameManager.Player1Score + " | " + _gameManager.Player2Score;
 	}
 
