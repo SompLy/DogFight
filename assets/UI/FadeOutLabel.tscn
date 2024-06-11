@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjhfuje4lejo"]
+
+[ext_resource type="Script" path="res://assets/UI/FadeOutLabel.cs" id="1_mv6k8"]
+
+[node name="FadeOutLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mv6k8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 95.0
+offset_right = 1147.0
+offset_bottom = 434.0
+theme_override_font_sizes/font_size = 50
+text = "Dog Vs. Dog
+2 | 1"
+horizontal_alignment = 1
