@@ -3,12 +3,14 @@ using System;
 
 public partial class HoldingItem : Sprite2D
 {
-	private Node2D	   _rotationPoint;
-	private Controller _controller;
-	private Sprite2D   _spriteInstance;
-
+	private GameManager _gameManager;
+	private Node2D	    _rotationPoint;
+	private Controller  _controller;
+	private Sprite2D    _spriteInstance;
+	
 	public override void _Ready()
 	{
+		_gameManager = GetNode<GameManager>( "/root/GameManager" );
 		_rotationPoint = GetNode<Node2D>( "../RotationPoint" );
 		_controller	   = ( Controller )GetParent();
 	}
@@ -39,6 +41,9 @@ public partial class HoldingItem : Sprite2D
 
 		Texture  = _spriteInstance.Texture;
 		Scale    = _spriteInstance.Scale;
-		Rotation = _rotationPoint.Rotation + Mathf.Pi * 0.5f;
+		if ( _gameManager.UseMouse && GetParent().Name == "Player1" )
+			LookAt( GetGlobalMousePosition() - Position );
+		else
+			Rotation = _rotationPoint.Rotation + Mathf.Pi * 0.5f;
 	}
 }
