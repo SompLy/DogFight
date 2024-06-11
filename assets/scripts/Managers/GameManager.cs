@@ -37,6 +37,15 @@ public partial class GameManager : Node
 				Player1Score++;
 				break;
 		}
+
+		if ( Player1Score >= 3 && GameMode == EGameMode.PvAITournament )
+		{
+			CurrentTournamentOpponent++;
+			Player1Score = 0;
+			Player2Score = 0;
+		}
+		
+		CurrentRound++;
 		ReloadMap();
 	}
 	private void ReloadMap()
