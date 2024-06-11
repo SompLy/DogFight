@@ -4,7 +4,6 @@ using System;
 public partial class Throwable : Node2D
 {
 	private Map _map;
-
 	private const float GRAVITY = 0.1f;
 	private Vector2 _dir;
 
@@ -36,7 +35,9 @@ public partial class Throwable : Node2D
 			velocity.Y -= Mathf.Min( 1.0f, Mathf.Abs( velocity.Y ) ) * Mathf.Sign( velocity.Y );
 
 			if ( normal == Vector2.One )
+			{
 				break;
+			}
 
 			if ( normal.Y != 0 && Mathf.Sign( _dir.Y ) != Mathf.Sign( normal.Y ) )
 			{
@@ -55,12 +56,14 @@ public partial class Throwable : Node2D
 			velocity.X -= Mathf.Min( 1.0f, Mathf.Abs( velocity.X ) ) * Mathf.Sign( velocity.X );
 
 			if ( normal == Vector2.One )
+			{
 				break;
+			}
 
 			if ( normal.X != 0 && Mathf.Sign( _dir.X ) != Mathf.Sign( normal.X ) )
 			{
-				_dir.X     *= -0.8f;
-				velocity.X *= -0.8f;
+				_dir.X     *= -0.1f;
+				velocity.X *= -0.1f;
 			}
 
 			Position = newPosition;
