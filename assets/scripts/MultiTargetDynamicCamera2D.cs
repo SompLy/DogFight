@@ -1,7 +1,5 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Numerics;
 using Vector2 = Godot.Vector2;
 
 public partial class MultiTargetDynamicCamera2D : Camera2D
@@ -13,6 +11,11 @@ public partial class MultiTargetDynamicCamera2D : Camera2D
 	private float 		  _maxZoom	 = 5.0f;
 	private Vector2 	  _margin	 = new Vector2( 100.0f, 50.0f );
 
+	private float _randomStrength = 30.0f;
+	private float _fadeTime = 5.0f;
+	private float _shakeStrength = 0.0f;
+	private RandomNumberGenerator _randomNumberGenerator = new RandomNumberGenerator();
+	
 	private Vector2 _screenSize;
 
 	public List<Vector2> GetTargets() { return _targets; }
@@ -46,6 +49,12 @@ public partial class MultiTargetDynamicCamera2D : Camera2D
 		zoomVec.X = Mathf.Lerp( Zoom.X, newZoom, 1 );
 		zoomVec.Y = Mathf.Lerp( Zoom.Y, newZoom, 1 );
 		Zoom = zoomVec;
+		
+		// Screen shake
+		if ( _shakeStrength > 0 )
+			_shakeStrength = Mathf.Lerp( _shakeStrength, 0.0f, _fadeTime * ( float )delta );
+
+		Offset = RandomOffset();
 	}
 
 	public void UpdateTarget( Vector2 target, int index )
@@ -53,14 +62,28 @@ public partial class MultiTargetDynamicCamera2D : Camera2D
 		if ( _targets.Count > index )
 			_targets[ index ] = target;
 	}
+	
 	public void AddTarget( Vector2 target )
 	{
 		if ( !_targets.Contains( target ) )
 			_targets.Add( target );
 	}
+	
 	public void RemoveTarget( int index)
 	{
 		if ( _targets.Count > index )
 			_targets.RemoveAt( index );
+	}
+
+	public void ApplyScreenShake( float strength )
+	{
+		_randomStrength = strength;
+		_shakeStrength = _randomStrength;
+	}
+
+	private Vector2 RandomOffset()
+	{
+		return new Vector2( _randomNumberGenerator.RandfRange( -_shakeStrength, _shakeStrength ),
+			_randomNumberGenerator.RandfRange( -_shakeStrength, _shakeStrength ) );
 	}
 }

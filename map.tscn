@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbf161rho30d0"]
 
 [ext_resource type="Script" path="res://assets/scripts/Map.cs" id="1_ddjp6"]
-[ext_resource type="Texture2D" uid="uid://dx13iyd35jllv" path="res://assets/sprites/BackGround_Dirt.png" id="2_s7tq5"]
+[ext_resource type="Texture2D" uid="uid://cr2dktlh7cr6s" path="res://assets/sprites/BackGround_Dirt2.png" id="2_q6v0k"]
 [ext_resource type="Script" path="res://assets/scripts/Collision.cs" id="3_he541"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hi8ec"]
@@ -11,12 +11,12 @@ script = ExtResource("1_ddjp6")
 
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(600, 500)
-texture = ExtResource("2_s7tq5")
+texture = ExtResource("2_q6v0k")
 
 [node name="FG" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_hi8ec")
 position = Vector2(600, 500)
-texture = ExtResource("2_s7tq5")
+texture = ExtResource("2_q6v0k")
 
 [node name="Collision" type="Node" parent="."]
 script = ExtResource("3_he541")

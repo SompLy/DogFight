@@ -5,15 +5,17 @@ using System.Net.Mime;
 
 public partial class Map : Node2D
 {
+	private MultiTargetDynamicCamera2D _camera;
 	private          Sprite2D    _fg;
 	private          Sprite2D    _bg;
 	private          List<float> _lineList   = new List<float>();
 	private readonly Color       TRANSPARENT = new Color( 0, 0, 0, 0 );
-
+	
 	public List<Controller> Players = new List<Controller>();
 	
 	public override void _Ready()
 	{
+		_camera = GetParent().GetNode<MultiTargetDynamicCamera2D>( "MultiTargetDynamicCamera2D" );
 		_fg = GetNode<Sprite2D>( "FG" );
 		_bg = GetNode<Sprite2D>( "BG" );
 		
@@ -24,10 +26,6 @@ public partial class Map : Node2D
 	public Vector2 CollisionNormalPoint( Vector2 pos )
 	{
 		return GetNode<Collision>( "Collision" ).CollisionNormalPoint( pos );
-	}
-	public Vector2 CollisionNormalBox( CollisionShape2D box, Vector2 dir)
-	{
-		return GetNode<Collision>( "Collision" ).CollisionNormalBox( box, dir );
 	}
 
 	private void _GenerateMap()
@@ -63,6 +61,7 @@ public partial class Map : Node2D
 
 	public void Explosion( Vector2 pos, int radius )
 	{
+		_camera.ApplyScreenShake( radius * 0.5f );
 		if ( Players.Count < 1 )
 			Players.AddRange( new []{ GetNode<Controller>( "../Player1" ),
 				GetNode<Controller>( "../Player2" ) } );
