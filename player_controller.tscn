@@ -1,9 +1,368 @@
-[gd_scene load_steps=6 format=3 uid="uid://banl63ixyoheq"]
+[gd_scene load_steps=58 format=3 uid="uid://banl63ixyoheq"]
 
 [ext_resource type="Script" path="res://assets/scripts/Controllers/PlayerController.cs" id="1_84kbo"]
 [ext_resource type="Texture2D" uid="uid://dlu2p4skf5yct" path="res://assets/sprites/Dog_Red.png" id="2_gb6f8"]
 [ext_resource type="Texture2D" uid="uid://m6mr8lxakxq6" path="res://assets/sprites/Weapon_AimArrow.png" id="3_i6qlt"]
 [ext_resource type="Script" path="res://assets/scripts/HoldingItem.cs" id="4_703p2"]
+[ext_resource type="Texture2D" uid="uid://dthyelyce1f1t" path="res://assets/sprites/Niklas/0 -25.png" id="5_7py5a"]
+[ext_resource type="Texture2D" uid="uid://bjqgkqioy0po1" path="res://assets/sprites/Niklas/1 -24.png" id="6_7tus5"]
+[ext_resource type="Texture2D" uid="uid://digq4u4kv4pby" path="res://assets/sprites/Niklas/2 -23.png" id="7_lvrye"]
+[ext_resource type="Texture2D" uid="uid://bb45qr0dueb66" path="res://assets/sprites/Niklas/3 -22.png" id="8_m6qi6"]
+[ext_resource type="Texture2D" uid="uid://cfwyuivvi8qh3" path="res://assets/sprites/Niklas/4 -21.png" id="9_4qutg"]
+[ext_resource type="Texture2D" uid="uid://bkfl8s1d1d8k0" path="res://assets/sprites/Niklas/5 -20.png" id="10_klg5w"]
+[ext_resource type="Texture2D" uid="uid://cjai2nuw4f1qy" path="res://assets/sprites/Niklas/6 -19.png" id="11_jhdbg"]
+[ext_resource type="Texture2D" uid="uid://cudia7xwrqa1o" path="res://assets/sprites/Niklas/7 -18.png" id="12_67d4s"]
+[ext_resource type="Texture2D" uid="uid://d0ivcfhhysmve" path="res://assets/sprites/Niklas/8 -17.png" id="13_uqaw6"]
+[ext_resource type="Texture2D" uid="uid://bt54vwd6cumco" path="res://assets/sprites/Niklas/9 -16.png" id="14_usrur"]
+[ext_resource type="Texture2D" uid="uid://ijr802hyqcok" path="res://assets/sprites/Niklas/10 -15.png" id="15_hxcqe"]
+[ext_resource type="Texture2D" uid="uid://cla5snd1qmx75" path="res://assets/sprites/Niklas/11 -14.png" id="16_tkuo0"]
+[ext_resource type="Texture2D" uid="uid://cswmj7eocu08p" path="res://assets/sprites/Niklas/12 -13.png" id="17_5lc3h"]
+[ext_resource type="Texture2D" uid="uid://c6mh3u6rejew3" path="res://assets/sprites/Niklas/13 -12.png" id="18_xbnt0"]
+[ext_resource type="Texture2D" uid="uid://csgsdt0hst0py" path="res://assets/sprites/Niklas/14 -11.png" id="19_gspkf"]
+[ext_resource type="Texture2D" uid="uid://drpm0ybs6vjst" path="res://assets/sprites/Niklas/15 -10.png" id="20_lf2cs"]
+[ext_resource type="Texture2D" uid="uid://d08a1filujs2x" path="res://assets/sprites/Niklas/16 -9.png" id="21_bilk3"]
+[ext_resource type="Texture2D" uid="uid://x8bl6my5y3h4" path="res://assets/sprites/Niklas/17 -8.png" id="22_031l4"]
+[ext_resource type="Texture2D" uid="uid://bupr08tjx8lw5" path="res://assets/sprites/Niklas/18 -7.png" id="23_7oyb8"]
+[ext_resource type="Texture2D" uid="uid://c3s78jhfec60s" path="res://assets/sprites/Niklas/19 -6.png" id="24_2oni2"]
+[ext_resource type="Texture2D" uid="uid://bva0jdi5756yv" path="res://assets/sprites/Niklas/20 -5.png" id="25_fbl26"]
+[ext_resource type="Texture2D" uid="uid://c8xbrdfhlwdq4" path="res://assets/sprites/Niklas/22 -4.png" id="26_uo1qd"]
+[ext_resource type="Texture2D" uid="uid://w6c0ivlyigeg" path="res://assets/sprites/Niklas/23 -3.png" id="27_rt6va"]
+[ext_resource type="Texture2D" uid="uid://bnn6rabnkxmtn" path="res://assets/sprites/Niklas/24 -2.png" id="28_yayuk"]
+[ext_resource type="Texture2D" uid="uid://b48mx8e8d0qr0" path="res://assets/sprites/Niklas/25 -1.png" id="29_luqvl"]
+[ext_resource type="Texture2D" uid="uid://ctisfll2w7gs8" path="res://assets/sprites/Niklas/26 0.png" id="30_ppc0w"]
+[ext_resource type="Texture2D" uid="uid://rn6q3tttldmk" path="res://assets/sprites/Niklas/27 1.png" id="31_c66j1"]
+[ext_resource type="Texture2D" uid="uid://cxqvjytbpaarv" path="res://assets/sprites/Niklas/28 2.png" id="32_s24f4"]
+[ext_resource type="Texture2D" uid="uid://dc8jvotrfwt48" path="res://assets/sprites/Niklas/29 3.png" id="33_gqkup"]
+[ext_resource type="Texture2D" uid="uid://65t0qw8p8nud" path="res://assets/sprites/Niklas/30 4.png" id="34_a0x4i"]
+[ext_resource type="Texture2D" uid="uid://caaamchc4mmic" path="res://assets/sprites/Niklas/31 5.png" id="35_6c24e"]
+[ext_resource type="Texture2D" uid="uid://c1xfel0xj7xqv" path="res://assets/sprites/Niklas/32 6.png" id="36_5215l"]
+[ext_resource type="Texture2D" uid="uid://dr8gw0l8wp6xu" path="res://assets/sprites/Niklas/33 7.png" id="37_hcr3k"]
+[ext_resource type="Texture2D" uid="uid://bdcabvfdgl11y" path="res://assets/sprites/Niklas/34 8.png" id="38_epdwp"]
+[ext_resource type="Texture2D" uid="uid://vn12wi8xb4kf" path="res://assets/sprites/Niklas/35 9.png" id="39_lu5dm"]
+[ext_resource type="Texture2D" uid="uid://dhjiku6wy5w3u" path="res://assets/sprites/Niklas/36 10.png" id="40_0j3v7"]
+[ext_resource type="Texture2D" uid="uid://dua2uccy0tsmi" path="res://assets/sprites/Niklas/37 11.png" id="41_p2c42"]
+[ext_resource type="Texture2D" uid="uid://dyqr7ppvii6ha" path="res://assets/sprites/Niklas/38 12.png" id="42_alc8k"]
+[ext_resource type="Texture2D" uid="uid://0yygtadx6gb5" path="res://assets/sprites/Niklas/39 13.png" id="43_gc8nv"]
+[ext_resource type="Texture2D" uid="uid://bixtyv6x0mm4h" path="res://assets/sprites/Niklas/40 14.png" id="44_8gpci"]
+[ext_resource type="Texture2D" uid="uid://cgal3dr12qo5b" path="res://assets/sprites/Niklas/41 15.png" id="45_e7kyt"]
+[ext_resource type="Texture2D" uid="uid://y05ava6gkni4" path="res://assets/sprites/Niklas/42 16.png" id="46_ppd80"]
+[ext_resource type="Texture2D" uid="uid://dxk8lwj7iipue" path="res://assets/sprites/Niklas/43 17.png" id="47_i11bc"]
+[ext_resource type="Texture2D" uid="uid://ch7nmvnseng3n" path="res://assets/sprites/Niklas/44 18.png" id="48_vxvok"]
+[ext_resource type="Texture2D" uid="uid://dsayxfp5tao8i" path="res://assets/sprites/Niklas/45 19.png" id="49_6ksfm"]
+[ext_resource type="Texture2D" uid="uid://cnhrof7wclvmv" path="res://assets/sprites/Niklas/46 20.png" id="50_lb884"]
+[ext_resource type="Texture2D" uid="uid://dklovdghse2ab" path="res://assets/sprites/Niklas/47 21.png" id="51_lbm0h"]
+[ext_resource type="Texture2D" uid="uid://df0n40ofjqd0u" path="res://assets/sprites/Niklas/48 22.png" id="52_0el3v"]
+[ext_resource type="Texture2D" uid="uid://qedry4eaeey" path="res://assets/sprites/Niklas/49 23.png" id="53_wke1k"]
+[ext_resource type="Texture2D" uid="uid://65sr6rmkw7sl" path="res://assets/sprites/Niklas/50 24.png" id="54_nfkrp"]
+[ext_resource type="Texture2D" uid="uid://c0lho4p0stv73" path="res://assets/sprites/Niklas/51 25.png" id="55_teuk4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqh71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7py5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7tus5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lvrye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m6qi6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4qutg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_klg5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jhdbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_67d4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqaw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_usrur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hxcqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tkuo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5lc3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xbnt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gspkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_lf2cs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_bilk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_031l4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_7oyb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_2oni2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_fbl26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_uo1qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_rt6va")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_yayuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_luqvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ppc0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_c66j1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_s24f4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_gqkup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_a0x4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_6c24e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_5215l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_hcr3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_epdwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_lu5dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_0j3v7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_p2c42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_alc8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_gc8nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_8gpci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_e7kyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ppd80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_i11bc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_vxvok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_6ksfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_lb884")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_lbm0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_0el3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_wke1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_nfkrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_teuk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_wke1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_nfkrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_0el3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_lbm0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_lb884")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_6ksfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_vxvok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_i11bc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ppd80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_e7kyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_8gpci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_gc8nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_alc8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_p2c42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_0j3v7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_lu5dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_epdwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_hcr3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_5215l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_6c24e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_a0x4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_gqkup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_s24f4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_c66j1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ppc0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_luqvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_yayuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_rt6va")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_uo1qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_fbl26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_2oni2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_7oyb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_031l4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_bilk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_lf2cs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gspkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xbnt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5lc3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tkuo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hxcqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_usrur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqaw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_67d4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jhdbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_klg5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4qutg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m6qi6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lvrye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7tus5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eueig"]
 radius = 9.0
@@ -12,7 +371,17 @@ radius = 9.0
 position = Vector2(1, 0)
 script = ExtResource("1_84kbo")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, -22)
+scale = Vector2(0.0582661, 0.0677348)
+sprite_frames = SubResource("SpriteFrames_tqh71")
+autoplay = "default"
+frame_progress = 0.603067
+speed_scale = 4.0
+
 [node name="CharacterSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
 texture = ExtResource("2_gb6f8")
 
 [node name="DamageCollider" type="CollisionShape2D" parent="."]
@@ -21,7 +390,7 @@ position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_eueig")
 
 [node name="RotationPoint" type="Node2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(-1, -3)
 
 [node name="DirectionSprite" type="Sprite2D" parent="RotationPoint"]
 position = Vector2(0, -17)
@@ -29,4 +398,5 @@ scale = Vector2(0.4, 0.5)
 texture = ExtResource("3_i6qlt")
 
 [node name="HoldingItem" type="Sprite2D" parent="."]
+position = Vector2(-1, -4)
 script = ExtResource("4_703p2")

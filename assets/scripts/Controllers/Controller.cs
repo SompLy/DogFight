@@ -8,18 +8,20 @@ public partial class Controller : CharacterBody2D
 
 	private CollisionShape2D _collisionShape;
 	private Vector2[] _rectPoints;
-	private Map _map;
+	public Map Map;
 
-	[Export] public bool AddToCamera = false;
-	[Export] public int PlayerIndex = 0;
-	[Export] public int Health = 3;
-	public float AttackPowerBazooka = 40.0f;
-	public float AttackPowerGrenade = 12.0f;
+	public bool	   AddToCamera = false;
+	public int	   PlayerIndex = 0;
+	public string  Nickname = "";
+	public int     Health = 3;
+	public float   AttackPowerBazooka = 40.0f;
+	public float   AttackPowerGrenade = 12.0f;
 	public Vector2 InternalVelocity = Vector2.Zero;
-	public bool IsAirborne = true;
-	public bool ShouldSwitchWeapon = true;
-	public int Walk = 0;
-	public bool ShouldJump = false;
+	public bool    IsAirborne = true;
+	public bool    IsDrilling = false;
+	public bool    ShouldSwitchWeapon = true;
+	public int     Walk = 0;
+	public bool    ShouldJump = false;
 
 	public enum EWeapon
 	{
@@ -34,27 +36,20 @@ public partial class Controller : CharacterBody2D
 
 	[Export] public Texture2D PlayerTexture;
 	private Sprite2D _playerSprite;
-	public Node2D RotationPoint;
-	public Node2D DirectionSprite;
-
+	
 	public override void _Ready()
 	{
 		_MultiTargetDynamicCamera2D = GetNode<MultiTargetDynamicCamera2D>( "../MultiTargetDynamicCamera2D" );
 
-		_GameManager    = GetNode<GameManager>( "/root/GameManager" );
-		_map            = GetNode<Map>( "../Map" );
-		_collisionShape = GetNode<CollisionShape2D>( "DamageCollider" );
-		RotationPoint   = GetNode<Node2D>( "RotationPoint" );
-		DirectionSprite = GetNode<Sprite2D>( "RotationPoint/DirectionSprite" );
-		_playerSprite   = GetNode<Sprite2D>( "CharacterSprite" );
+		_GameManager       = GetNode<GameManager>	  ( "/root/GameManager" );
+		Map                = GetNode<Map>			  ( "../Map" );
+		_collisionShape    = GetNode<CollisionShape2D>( "DamageCollider" );
+		_playerSprite      = GetNode<Sprite2D>		  ( "CharacterSprite" );
 
 		if ( AddToCamera )
-		{
-			GD.Print( "Added \"" + Name + "\" to dynamic camera" );
 			_MultiTargetDynamicCamera2D.AddTarget( Position );
-		}
 
-		GD.Print( "Total targets : " + _MultiTargetDynamicCamera2D.GetTargets().Count );
+		//GD.Print( "Total targets : " + _MultiTargetDynamicCamera2D.GetTargets().Count );
 
 		GetNode<Sprite2D>( "CharacterSprite" ).Texture = PlayerTexture;
 
@@ -85,7 +80,7 @@ public partial class Controller : CharacterBody2D
 		InternalVelocity.Y -= -12.82f * ( float )delta;
 		InternalVelocity.X -= InternalVelocity.X;
 
-		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0, 1 ) ) != Vector2.Zero )
+		if ( Map.CollisionNormalPoint( Position + new Vector2( 0, 1 ) ) != Vector2.Zero )
 		{
 			// the pixel below us is solid.
 			IsAirborne       = false;
@@ -106,10 +101,21 @@ public partial class Controller : CharacterBody2D
 			Position += InternalVelocity;
 		}
 
-		if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( Position + new Vector2( 0.0f, -1.0f ) ) == Vector2.Down )
+		if ( Map.CollisionNormalPoint( Position + new Vector2( 0.0f, -7.0f ) ) == Vector2.One )
 		{
+			if ( !IsDrilling )
+			{
+				InstantiateDrill();
+				IsDrilling = true;
+			}
+			else
+			{
+				return;
+			}
+			
 			// Jump through overhangs fix
-			InternalVelocity.Y = 0.0f;
+			//GD.Print( "Prevented going through wall" );
+			//InternalVelocity.Y = 0.0f;
 		}
 
 		// Flip sprite based on direction
@@ -134,21 +140,26 @@ public partial class Controller : CharacterBody2D
 			Vector2 pos = Position + dir;
 
 			// new position doesn't have a normal -> it's valid to move to
-			if ( GetNode<Map>( "../Map" ).CollisionNormalPoint( pos ) == Vector2.Zero )
+			if ( Map.CollisionNormalPoint( pos ) == Vector2.Zero )
 				validPos = pos;
 			else
 				break;
 		}
 
-		Position =  validPos;
-		Position += GetNode<Map>( "../Map" ).CollisionNormalPoint( validPos );
+		Position = validPos;
+
+		Vector2 offset = new Vector2( 0.0f, 0.0f );
+		if ( Map.CollisionNormalPoint( validPos ) == Vector2.One )
+			offset = new Vector2( -1.0f, 0.0f );
+		
+		Position += Map.CollisionNormalPoint( validPos + offset );
 	}
 
 	public void InstantiateGrenade( Vector2 dir )
 	{
 		PackedScene scene = GD.Load<PackedScene>( "res://grenade_big.tscn" );
 		GrenadeBig instance = ( GrenadeBig )scene.Instantiate();
-		instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above
+		instance.Position = Position + new Vector2( 0, -10.0f );
 		instance.Init( dir );
 		GetParent().AddChild( instance );
 	}
@@ -157,9 +168,17 @@ public partial class Controller : CharacterBody2D
 	{
 		PackedScene scene = GD.Load<PackedScene>( "res://bazooka.tscn" );
 		Bazooka instance = ( Bazooka )scene.Instantiate();
-		instance.Position = Position + new Vector2( 0, -5.0f ); // Position it 10px above
+		instance.Position = Position + new Vector2( 0, -2.0f );
 		instance.Init( dir );
 		GetParent().AddChild( instance );
+	}
+
+	public void InstantiateDrill()
+	{
+		PackedScene scene = GD.Load<PackedScene>( "res://drill.tscn" );
+		Drill instance = ( Drill )scene.Instantiate();
+		// Since adding as a child there is no need to set .Position
+		AddChild( instance );
 	}
 
 	// public void InstantiateMolotov( Vector2 dir )
@@ -173,6 +192,7 @@ public partial class Controller : CharacterBody2D
 	private void Death()
 	{
 		_GameManager.PlayerDeath( PlayerIndex );
+		
 	}
 
 	public override void _Draw()
@@ -182,7 +202,7 @@ public partial class Controller : CharacterBody2D
 		//DrawLine( _rectPoints[ 3 ], _rectPoints[ 2 ], Colors.Brown, 1.0f );
 		//DrawLine( _rectPoints[ 2 ], _rectPoints[ 0 ], Colors.Red, 1.0f );
 
-		//DrawCircle( Position, 1.0f, Colors.Aqua );
+		DrawCircle( new Vector2( 0.0f, -7.0f ), 1.0f, Colors.Aqua );
 		//DrawCircle( _rectPoints[ 0 ], 1.0f, Colors.Red );
 		//DrawCircle( _rectPoints[ 1 ], 1.0f, Colors.Aqua );
 		//DrawCircle( _rectPoints[ 2 ], 1.0f, Colors.Aqua );
