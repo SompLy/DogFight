@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx1cbu742y4x5"]
 
 [ext_resource type="PackedScene" uid="uid://banl63ixyoheq" path="res://player_controller.tscn" id="1_em8tr"]
-[ext_resource type="Script" path="res://assets/scripts/Controllers/EnemyController.cs" id="2_daaf0"]
+[ext_resource type="Script" path="res://assets/scripts/Controllers/Enemies/Enemy1Controller.cs" id="2_21n8q"]
 
 [node name="Enemy" instance=ExtResource("1_em8tr")]
-script = ExtResource("2_daaf0")
+script = ExtResource("2_21n8q")
 
 [node name="DirectionSprite" parent="RotationPoint" index="0"]
 visible = false

@@ -3,32 +3,39 @@ using System;
 
 public partial class InstantiateControllers : Node
 {
+	private GameManager _gameManager;
 	private PackedScene _player;
 	private PackedScene _enemy;
 	private PackedScene _map;
 	private PackedScene _camera;
-	private GameManager _gameManager;
+	private PackedScene _opponentUI;
+
 	public override void _Ready()
 	{
 		_gameManager = GetNode<GameManager>( "/root/GameManager" );
 		_player      = ResourceLoader.Load<PackedScene>( "res://player_controller.tscn" );
-		_enemy       = ResourceLoader.Load<PackedScene>( "res://enemy_controller.tscn" );
 		_map         = ResourceLoader.Load<PackedScene>( "res://map.tscn" );
-		_camera		 = ResourceLoader.Load<PackedScene>( "res://multi_target_dynamic_camera_2d.tscn" );
-		
+		_camera      = ResourceLoader.Load<PackedScene>( "res://multi_target_dynamic_camera_2d.tscn" );
+		_enemy       = ResourceLoader.Load<PackedScene>( "res://assets/scripts/Controllers/Enemies/enemy" + 
+		                                                 ( _gameManager.CurrentTournamentOpponent + 1 ) +
+		                                                 "_controller.tscn" );
+		_opponentUI  = ResourceLoader.Load<PackedScene>( "res://assets/UI/FadeOutLabel.tscn" );
+
 		// Player 1
 		PlayerController p1Instance = ( PlayerController )_player.Instantiate();
 		p1Instance.Name          = "Player1";
+		p1Instance.Nickname		 = "Player 1";
 		p1Instance.Controls      = ( PlayerControls )GD.Load( "res://assets/Resource/p1_Controls.tres" );
 		p1Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Collie.png" );
 		p1Instance.AddToCamera   = true;
 		p1Instance.PlayerIndex   = 0;
 		p1Instance.Health        = 3;
 		p1Instance.Position      = new Vector2( 100.0f, 100.0f );
-		
+
 		// Player 2
 		PlayerController p2Instance = ( PlayerController )_player.Instantiate();
 		p2Instance.Name          = "Player2";
+		p2Instance.Nickname		 = "Player 2";
 		p2Instance.Controls      = ( PlayerControls )GD.Load( "res://assets/Resource/p2_Controls.tres" );
 		p2Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
 		p2Instance.AddToCamera   = true;
@@ -36,73 +43,120 @@ public partial class InstantiateControllers : Node
 		p2Instance.Health        = 3;
 		p2Instance.Position      = new Vector2( 900.0f, 100.0f );
 
-		EnemyController enemyInstance = ( EnemyController )_enemy.Instantiate();
+		// Declare instance
+		Enemy1Controller enemy1Instance = null;
+		Enemy2Controller enemy2Instance = null;
+		Enemy3Controller enemy3Instance = null;
+		Enemy4Controller enemy4Instance = null;
+		Enemy5Controller enemy5Instance = null;
+
 		switch ( _gameManager.CurrentTournamentOpponent )
 		{
-			
 			case 0:
 				// Granat Göran
-				enemyInstance.Name          = "Player2";
-				enemyInstance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
-				enemyInstance.AddToCamera   = true;
-				enemyInstance.PlayerIndex   = 1;
-				enemyInstance.Health        = 3;
-				enemyInstance.Position      = new Vector2( 900.0f, 100.0f );
+				enemy1Instance = ( Enemy1Controller )_enemy.Instantiate();
+				enemy1Instance.Name          = "Player2";
+				enemy1Instance.Nickname      = "Granat Göran";
+				enemy1Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
+				enemy1Instance.AddToCamera   = true;
+				enemy1Instance.PlayerIndex   = 1;
+				enemy1Instance.Health        = 3;
+				enemy1Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 			case 1:
 				// Bosse Bazooka
-				enemyInstance.Name          = "Player2";
-				enemyInstance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
-				enemyInstance.AddToCamera   = true;
-				enemyInstance.PlayerIndex   = 1;
-				enemyInstance.Health        = 3;
-				enemyInstance.Position      = new Vector2( 900.0f, 100.0f );
+				enemy2Instance = ( Enemy2Controller )_enemy.Instantiate();
+				enemy2Instance.Name          = "Player2";
+				enemy2Instance.Nickname		 = "Bazooka Bosse";
+				enemy2Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
+				enemy2Instance.AddToCamera   = true;
+				enemy2Instance.PlayerIndex   = 1;
+				enemy2Instance.Health        = 3;
+				enemy2Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 			case 2:
 				// Molotov Melker
-				enemyInstance.Name          = "Player2";
-				enemyInstance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
-				enemyInstance.AddToCamera   = true;
-				enemyInstance.PlayerIndex   = 1;
-				enemyInstance.Health        = 3;
-				enemyInstance.Position      = new Vector2( 900.0f, 100.0f );
+				enemy3Instance = ( Enemy3Controller )_enemy.Instantiate();
+				enemy3Instance.Name          = "Player2";
+				enemy3Instance.Nickname		 = "Molotov Melker";
+				enemy3Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
+				enemy3Instance.AddToCamera   = true;
+				enemy3Instance.PlayerIndex   = 1;
+				enemy3Instance.Health        = 3;
+				enemy3Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 			case 3:
 				// Örjan den överlägsna
-				enemyInstance.Name          = "Player2";
-				enemyInstance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
-				enemyInstance.AddToCamera   = true;
-				enemyInstance.PlayerIndex   = 1;
-				enemyInstance.Health        = 4;
-				enemyInstance.Position      = new Vector2( 900.0f, 100.0f );
+				enemy4Instance = ( Enemy4Controller )_enemy.Instantiate();
+				enemy4Instance.Name          = "Player2";
+				enemy4Instance.Nickname		 = "Örjan den Överlägsne";
+				enemy4Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
+				enemy4Instance.AddToCamera   = true;
+				enemy4Instance.PlayerIndex   = 1;
+				enemy4Instance.Health        = 4;
+				enemy4Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 			case 4:
 				// Demon Dog
-				enemyInstance.Name          = "Player2";
-				enemyInstance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
-				enemyInstance.AddToCamera   = true;
-				enemyInstance.PlayerIndex   = 1;
-				enemyInstance.Health        = 5;
-				enemyInstance.Position      = new Vector2( 900.0f, 100.0f );
+				enemy5Instance = ( Enemy5Controller )_enemy.Instantiate();
+				enemy5Instance.Name          = "Player2";
+				enemy5Instance.Nickname		 = "Demon Dog";
+				enemy5Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
+				enemy5Instance.AddToCamera   = true;
+				enemy5Instance.PlayerIndex   = 1;
+				enemy5Instance.Health        = 5;
+				enemy5Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 		}
-		
+
 		// Map
 		Map mapInstance = ( Map )_map.Instantiate();
-		
+
 		// Camera
 		MultiTargetDynamicCamera2D camInstance = ( MultiTargetDynamicCamera2D )_camera.Instantiate();
-		camInstance.Position = new Vector2( 600, 250 );
+		camInstance.Position                 = new Vector2( 600, 250 );
 		camInstance.PositionSmoothingEnabled = true;
-		camInstance.PositionSmoothingSpeed = 1.0f;
+		camInstance.PositionSmoothingSpeed   = 1.0f;
 		
+		// UI
+		FadeOutLabel opponentUIInstance = ( FadeOutLabel )_opponentUI.Instantiate();
+
 		// Add as children
 		GetParent().CallDeferred( "add_child", camInstance );
 		GetParent().CallDeferred( "add_child", mapInstance );
 		GetParent().CallDeferred( "add_child", p1Instance );
-		GetParent().CallDeferred( "add_child", enemyInstance );
-		
+
+		switch ( _gameManager.GameMode )
+		{
+			case GameManager.EGameMode.PvP:
+				GetParent().CallDeferred( "add_child", p2Instance );
+				break;
+			case GameManager.EGameMode.PvAISingle:
+				GetParent().CallDeferred( "add_child", enemy1Instance );
+				break;
+			case GameManager.EGameMode.PvAITournament:
+				switch ( _gameManager.CurrentTournamentOpponent )
+				{
+					case 0:
+						GetParent().CallDeferred( "add_child", enemy1Instance );
+						break;
+					case 1:
+						GetParent().CallDeferred( "add_child", enemy2Instance );
+						break;
+					case 2:
+						GetParent().CallDeferred( "add_child", enemy3Instance );
+						break;
+					case 3:
+						GetParent().CallDeferred( "add_child", enemy4Instance );
+						break;
+					case 4:
+						GetParent().CallDeferred( "add_child", enemy5Instance );
+						break;
+				}
+				break;
+		}
+		GetParent().CallDeferred( "add_child", opponentUIInstance );
+
 		QueueFree();
 	}
-
 }
