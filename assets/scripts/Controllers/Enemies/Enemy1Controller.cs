@@ -3,7 +3,7 @@ using System;
 
 public partial class Enemy1Controller : EnemyController
 {
-	// Grenade Guy
+	// Gränslösa Granat-Göran
 	enum EState
 	{
 		Idle,
@@ -11,24 +11,20 @@ public partial class Enemy1Controller : EnemyController
 		Grenade
 	}
 	private EState _state = EState.Walking;
-	private bool _isAttackRange;
-	private Map _map;
+	private bool _inAttackRange;
+	private RandomNumberGenerator _randomNumberGenerator = new RandomNumberGenerator();
+	public override void _Ready()
+	{
+		base._Ready();
+		CurrentWeapon = EWeapon.Grenade;
+	}
+
 	public override void _Process(double delta)
 	{
 		base._Process( delta );
 
-		if ( _map == null )
-		{
-			_map = GetParent().GetNode<Map>( "Map" );
-		}
-		
-		AttackTimer -= delta;
-
-		if ( DistanceToPlayer.X > -100.0f &&
-		     DistanceToPlayer.X < 100.0f )
-			_isAttackRange = true;
-		else
-			_isAttackRange = false;
+		// If in range
+		_inAttackRange = Mathf.Abs( DistanceToPlayer.X ) < 300;
 		
 		switch ( _state )
 		{
@@ -45,26 +41,19 @@ public partial class Enemy1Controller : EnemyController
 				
 				if ( Map.CollisionNormalPoint( Position + new Godot.Vector2( 1, -2 ) ) != Vector2.Zero || 
 				     Map.CollisionNormalPoint( Position + new Godot.Vector2( -1, -2 ) ) != Vector2.Zero )
-				{
 					ShouldJump = true;
-				}
 				
 				// Attack if in range
-				if ( _isAttackRange )
+				if ( _inAttackRange && AttackTimer1 <= 0 )
 					_state = EState.Grenade;
 				
 				break;
 			case EState.Grenade:
-				if ( AttackTimer <= 0 )
-				{
-					ShouldJump = true;
-					InstantiateGrenade( ( PlayerController.GlobalPosition - Position ) );
-					AttackTimer = 1.0f;
-				}
-				else
-				{
+					InstantiateGrenade( PlayerController.GlobalPosition - Position );
+					ShouldJump = _randomNumberGenerator.RandiRange( 0, 2 ) == 0;
+					AttackTimer1 = _randomNumberGenerator.RandfRange( 0.5f, 1.2f );
 					_state = EState.Walking;
-				}
+					
 				break;
 			default:
 				break;
