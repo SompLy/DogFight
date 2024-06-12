@@ -22,7 +22,8 @@ public partial class Controller : CharacterBody2D
 	public bool    ShouldSwitchWeapon = true;
 	public int     Walk = 0;
 	public bool    ShouldJump = false;
-
+	public double  AttackTimer1 = 0.0f;
+	public double  AttackTimer2 = 0.0f;
 	public enum EWeapon
 	{
 		Bazooka,
@@ -68,6 +69,9 @@ public partial class Controller : CharacterBody2D
 	{
 		_MultiTargetDynamicCamera2D.UpdateTarget( Position, PlayerIndex );
 
+		AttackTimer1 -= delta;
+		AttackTimer2 -= delta;
+		
 		if ( Health > 0 ) return;
 		Death();
 		QueueFree();
@@ -75,6 +79,8 @@ public partial class Controller : CharacterBody2D
 
 	public override void _PhysicsProcess( double delta )
 	{
+		base._PhysicsProcess( delta );
+		
 		Vector2 validPos;
 
 		InternalVelocity.Y -= -12.82f * ( float )delta;
@@ -89,7 +95,7 @@ public partial class Controller : CharacterBody2D
 			{
 				ShouldJump         =  false;
 				IsAirborne         =  true;
-				InternalVelocity.Y -= 7.0f;
+				InternalVelocity.Y -= 8.0f;
 			}
 		}
 		else
@@ -98,10 +104,11 @@ public partial class Controller : CharacterBody2D
 		if ( IsAirborne )
 		{
 			// Apply Velocity
+			InternalVelocity.Y = Mathf.Clamp( InternalVelocity.Y, -10.0f, 40.0f );
 			Position += InternalVelocity;
 		}
 
-		if ( Map.CollisionNormalPoint( Position + new Vector2( 0.0f, -7.0f ) ) == Vector2.One )
+		if ( Map.CollisionNormalPoint( Position + new Vector2( 0.0f, -8.0f ) ) == Vector2.One )
 		{
 			if ( !IsDrilling )
 			{
@@ -109,9 +116,7 @@ public partial class Controller : CharacterBody2D
 				IsDrilling = true;
 			}
 			else
-			{
 				return;
-			}
 			
 			// Jump through overhangs fix
 			//GD.Print( "Prevented going through wall" );
@@ -202,7 +207,7 @@ public partial class Controller : CharacterBody2D
 		//DrawLine( _rectPoints[ 3 ], _rectPoints[ 2 ], Colors.Brown, 1.0f );
 		//DrawLine( _rectPoints[ 2 ], _rectPoints[ 0 ], Colors.Red, 1.0f );
 
-		DrawCircle( new Vector2( 0.0f, -7.0f ), 1.0f, Colors.Aqua );
+		//DrawCircle( new Vector2( 0.0f, -7.0f ), 1.0f, Colors.Aqua );
 		//DrawCircle( _rectPoints[ 0 ], 1.0f, Colors.Red );
 		//DrawCircle( _rectPoints[ 1 ], 1.0f, Colors.Aqua );
 		//DrawCircle( _rectPoints[ 2 ], 1.0f, Colors.Aqua );

@@ -7,6 +7,8 @@ public partial class PlayerController : Controller
 	
 	public Node2D RotationPoint;
 	public Node2D DirectionSprite;
+	private float _bazookaCooldown = 0.8f;
+	private float _grenadeCooldown = 0.4f;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -15,6 +17,8 @@ public partial class PlayerController : Controller
 		DirectionSprite = GetNode<Sprite2D>( "RotationPoint/DirectionSprite" );
 		if ( _GameManager.GameMode != GameManager.EGameMode.PvP )
 			DirectionSprite.Visible = false;
+		
+		
 	}
 	public override void _Input( InputEvent @event )
 	{
@@ -24,13 +28,24 @@ public partial class PlayerController : Controller
 			switch ( CurrentWeapon )
 			{
 				case EWeapon.Bazooka:
-					InstantiateBazooka( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) 
-						* AttackPowerBazooka * 0.5f );
+					if ( AttackTimer1 <= 0 )
+					{
+						InstantiateBazooka( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 )
+							* AttackPowerBazooka * 0.5f );
+						AttackTimer1 = _bazookaCooldown;
+					}
+
 					break;
 				case EWeapon.Grenade:
-					InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
+					if ( AttackTimer2 <= 0 )
+					{
+						InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
+						AttackTimer2 = _grenadeCooldown;
+					}
+
 					break;
 				case EWeapon.Molotov:
+					//if ( AttackTimer3 <= 0 )
 					//InstantiateMolotov( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
 					break;
 				default:
@@ -43,10 +58,18 @@ public partial class PlayerController : Controller
 			switch ( CurrentWeapon )
 			{
 				case EWeapon.Bazooka:
-					InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerBazooka );
+					if ( AttackTimer1 <= 0 )
+					{
+						InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerBazooka );
+						AttackTimer1 = _bazookaCooldown;
+					}
 					break;
 				case EWeapon.Grenade:
-					InstantiateGrenade( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerGrenade );
+					if ( AttackTimer2 <= 0 )
+					{
+						InstantiateGrenade( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerGrenade );
+						AttackTimer2 = _grenadeCooldown;
+					}
 					break;
 				case EWeapon.Molotov:
 					//InstantiateMolotov( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
@@ -55,7 +78,7 @@ public partial class PlayerController : Controller
 					break;
 			}
 		}
-		if ( Input.IsActionPressed( Controls.Switch ) )
+		if ( Input.IsActionJustPressed( Controls.Switch ) )
 		{
 			ShouldSwitchWeapon = true;
 			
@@ -82,7 +105,6 @@ public partial class PlayerController : Controller
 	public override void _Process(double delta)
 	{
 		base._Process( delta );
-
 	}
 	public override void _PhysicsProcess(double delta)
 	{
