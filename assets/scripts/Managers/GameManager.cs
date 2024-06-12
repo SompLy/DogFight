@@ -38,18 +38,29 @@ public partial class GameManager : Node
 				break;
 		}
 
-		if ( Player1Score >= 3 && GameMode == EGameMode.PvAITournament )
+		CurrentRound++;
+		ReloadMap( "res: //main.tscn" );
+		
+		if ( GameMode != EGameMode.PvAITournament )
+			return;
+		
+		if ( Player1Score == 3 )
 		{
 			CurrentTournamentOpponent++;
 			Player1Score = 0;
 			Player2Score = 0;
 		}
+
+		if ( Player2Score == 3 )
+		{
+			ReloadMap( "res: //main_menu.tscn" );
+			Player1Score = 0;
+			Player2Score = 0;
+		}
 		
-		CurrentRound++;
-		ReloadMap();
 	}
-	private void ReloadMap()
+	private void ReloadMap( string path )
 	{
-		GetTree().ChangeSceneToPacked( ResourceLoader.Load<PackedScene>( "res://main.tscn" ) );
+		GetTree().ChangeSceneToPacked( ResourceLoader.Load<PackedScene>( path ) );
 	}
 }
