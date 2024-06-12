@@ -77,7 +77,7 @@ public partial class MultiTargetDynamicCamera2D : Camera2D
 
 	public void ApplyScreenShake( float strength )
 	{
-		_randomStrength = strength;
+		_randomStrength = strength * 0.3f;
 		_shakeStrength = _randomStrength;
 	}
 

@@ -10,7 +10,7 @@ public partial class HoldingItem : Sprite2D
 	
 	public override void _Ready()
 	{
-		_gameManager = GetNode<GameManager>( "/root/GameManager" );
+		_gameManager  = GetNode<GameManager>( "/root/GameManager" );
 		_rotationPoint = GetNode<Node2D>( "../RotationPoint" );
 		_controller	   = ( Controller )GetParent();
 	}

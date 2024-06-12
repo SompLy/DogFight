@@ -5,7 +5,6 @@ public partial class EnemyController : Controller
 {
 	public Vector2			DistanceToPlayer = Vector2.Zero;
 	public PlayerController PlayerController;
-	public double			AttackTimer;
 	public override void _Ready()
 	{
 		base._Ready();

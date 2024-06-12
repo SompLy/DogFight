@@ -28,11 +28,4 @@ public partial class Drill : Node2D
 			QueueFree();
 		}
 	}
-
-	public override void _Draw()
-	{
-		base._Draw();
-		
-		DrawCircle( new Vector2( 0.0f, -7.0f ), 1.0f, Colors.Aqua );
-	}
 }
