@@ -33,7 +33,7 @@ public partial class GrenadeBig : Throwable
 
 	public void _OnTimerTimeout()
 	{
-		_map.Explosion( Position, 30 );
+		_map.Explosion( Position, 30, OwnerIndex );
 		_label.Visible                          = false;
 		GetNode<Sprite2D>( "Sprite2D" ).Visible = false;
 		InstantiateParticle();

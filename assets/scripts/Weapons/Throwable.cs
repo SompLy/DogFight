@@ -5,6 +5,7 @@ public partial class Throwable : Node2D
 {
 	private Map _map;
 	private const float GRAVITY = 0.1f;
+	public int OwnerIndex;
 	private Vector2 _dir;
 
 	public override void _Ready()

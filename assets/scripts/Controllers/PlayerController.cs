@@ -31,7 +31,7 @@ public partial class PlayerController : Controller
 					if ( AttackTimer1 <= 0 )
 					{
 						InstantiateBazooka( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 )
-							* AttackPowerBazooka * 0.5f );
+							* AttackPowerBazooka * 0.5f, PlayerIndex );
 						AttackTimer1 = _bazookaCooldown;
 					}
 
@@ -39,14 +39,16 @@ public partial class PlayerController : Controller
 				case EWeapon.Grenade:
 					if ( AttackTimer2 <= 0 )
 					{
-						InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ) );
+						InstantiateGrenade( GetGlobalMousePosition() - GlobalPosition + new Vector2( 0, -12 ),
+							PlayerIndex);
 						AttackTimer2 = _grenadeCooldown;
 					}
 
 					break;
 				case EWeapon.Molotov:
 					//if ( AttackTimer3 <= 0 )
-					//InstantiateMolotov( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower );
+					//InstantiateMolotov( ( _directionSprite.GlobalPosition - _rotationPoint.GlobalPosition ) * _attackPower,
+					//PlayerIndex );
 					break;
 				default:
 					break;
@@ -60,14 +62,16 @@ public partial class PlayerController : Controller
 				case EWeapon.Bazooka:
 					if ( AttackTimer1 <= 0 )
 					{
-						InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerBazooka );
+						InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) *
+						                    AttackPowerBazooka * new Vector2( 3.0f, 0.0f ), PlayerIndex);
 						AttackTimer1 = _bazookaCooldown;
 					}
 					break;
 				case EWeapon.Grenade:
 					if ( AttackTimer2 <= 0 )
 					{
-						InstantiateGrenade( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerGrenade );
+						InstantiateGrenade( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) * AttackPowerGrenade * 2.0f,
+							PlayerIndex );
 						AttackTimer2 = _grenadeCooldown;
 					}
 					break;

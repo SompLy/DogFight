@@ -4,8 +4,8 @@ using System;
 public partial class Projectile : Node2D
 {
 	private Map _map;
-
 	private const float GRAVITY = 0.4f;
+	public int OwnerIndex;
 	public Vector2 Dir;
 
 	public bool Hit = false;

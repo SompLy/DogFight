@@ -17,7 +17,7 @@ public partial class Bazooka : Projectile
 
 		if ( Hit && !IsInstanceValid( _particleInstance ))
 		{
-			_map.Explosion( Position, 40 );
+			_map.Explosion( Position, 35, OwnerIndex );
 			GetNode<Sprite2D>( "Sprite2D" ).Visible = false;
 			GetNode<GpuParticles2D>( "BazookaParticle" ).Visible = false;
 			Dir = Vector2.Zero;

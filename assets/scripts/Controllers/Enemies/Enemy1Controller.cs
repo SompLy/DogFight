@@ -13,6 +13,7 @@ public partial class Enemy1Controller : EnemyController
 	private EState _state = EState.Walking;
 	private bool _inAttackRange;
 	private RandomNumberGenerator _randomNumberGenerator = new RandomNumberGenerator();
+	
 	public override void _Ready()
 	{
 		base._Ready();
@@ -49,12 +50,13 @@ public partial class Enemy1Controller : EnemyController
 				
 				break;
 			case EState.Grenade:
-					InstantiateGrenade( PlayerController.GlobalPosition - Position );
+					InstantiateGrenade( PlayerController.GlobalPosition - Position, PlayerIndex );
 					ShouldJump = _randomNumberGenerator.RandiRange( 0, 2 ) == 0;
 					AttackTimer1 = _randomNumberGenerator.RandfRange( 0.5f, 1.2f );
 					_state = EState.Walking;
 					
 				break;
+			
 			default:
 				break;
 		}

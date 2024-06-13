@@ -53,7 +53,7 @@ public partial class Enemy2Controller : EnemyController
 				if ( AttackTimer1 <= 0 )
 				{
 					InstantiateBazooka( PlayerController.GlobalPosition - Position * 
-						_randomNumberGenerator.RandfRange( 1.0f, 2.5f ));
+						_randomNumberGenerator.RandfRange( 1.0f, 2.5f ), PlayerIndex);
 					AttackTimer1 = 0.25f;
 				}
 				_state = EState.Walking;
@@ -64,7 +64,7 @@ public partial class Enemy2Controller : EnemyController
 				if ( AttackTimer1 <= 0 )
 				{
 					ShouldJump = true;
-					InstantiateBazooka( PlayerController.GlobalPosition - Position * 1.5f );
+					InstantiateBazooka( PlayerController.GlobalPosition - Position * 1.5f, PlayerIndex );
 					AttackTimer1 = 1.0f;
 				}
 				_state = EState.Walking;

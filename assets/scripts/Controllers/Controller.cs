@@ -160,19 +160,21 @@ public partial class Controller : CharacterBody2D
 		Position += Map.CollisionNormalPoint( validPos + offset );
 	}
 
-	public void InstantiateGrenade( Vector2 dir )
+	public void InstantiateGrenade( Vector2 dir, int ownerIndex  )
 	{
 		PackedScene scene = GD.Load<PackedScene>( "res://grenade_big.tscn" );
 		GrenadeBig instance = ( GrenadeBig )scene.Instantiate();
+		instance.OwnerIndex = ownerIndex;
 		instance.Position = Position + new Vector2( 0, -10.0f );
 		instance.Init( dir );
 		GetParent().AddChild( instance );
 	}
 
-	public void InstantiateBazooka( Vector2 dir )
+	public void InstantiateBazooka( Vector2 dir, int ownerIndex )
 	{
 		PackedScene scene = GD.Load<PackedScene>( "res://bazooka.tscn" );
 		Bazooka instance = ( Bazooka )scene.Instantiate();
+		instance.OwnerIndex = ownerIndex;
 		instance.Position = Position + new Vector2( 0, -2.0f );
 		instance.Init( dir );
 		GetParent().AddChild( instance );
@@ -186,7 +188,7 @@ public partial class Controller : CharacterBody2D
 		AddChild( instance );
 	}
 
-	// public void InstantiateMolotov( Vector2 dir )
+	// public void InstantiateMolotov( Vector2 dir , int ownerIndex )
 	// {
 	// 	PackedScene scene = GD.Load<PackedScene>( "res://bazooka.tscn" );
 	// 	Molotov instance = ( Molotov )scene.Instantiate();

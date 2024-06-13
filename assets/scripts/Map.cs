@@ -59,7 +59,7 @@ public partial class Map : Node2D
 		_bg.Texture = ImageTexture.CreateFromImage( bgImage );
 	}
 
-	public void Explosion( Vector2 pos, int radius )
+	public void Explosion( Vector2 pos, int radius, int ownerIndex )
 	{
 		_camera.ApplyScreenShake( radius * 0.5f );
 		if ( Players.Count < 1 )
@@ -100,7 +100,8 @@ public partial class Map : Node2D
 				}          
 				if ( IsInstanceValid( Players[ 1 ] ) && 
 					Mathf.Round( Players[ 1 ].Position.X ) == Mathf.Round( pixel.X ) &&
-					Mathf.Round( Players[ 1 ].Position.Y ) == Mathf.Round( pixel.Y ) )
+					Mathf.Round( Players[ 1 ].Position.Y ) == Mathf.Round( pixel.Y ) &&
+					ownerIndex == 0 )
 				{                 
 					Players[ 1 ].InternalVelocity += new Vector2( 0.0f, -7.0f );
 					Players[ 1 ].Health           -= 1;

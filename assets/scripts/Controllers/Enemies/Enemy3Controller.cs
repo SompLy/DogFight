@@ -50,7 +50,7 @@ public partial class Enemy3Controller : EnemyController
 				{
 					CurrentWeapon = EWeapon.Bazooka;
 					InstantiateBazooka( PlayerController.GlobalPosition - Position * 
-						_randomNumberGenerator.RandfRange( 1.0f, 2.5f ));
+						_randomNumberGenerator.RandfRange( 1.0f, 2.5f ), PlayerIndex);
 					AttackTimer1 = 0.25f;
 				}
 				_state = EState.Walking;
@@ -61,7 +61,7 @@ public partial class Enemy3Controller : EnemyController
 				{
 					CurrentWeapon = EWeapon.Bazooka;
 					ShouldJump = true;
-					InstantiateBazooka( PlayerController.GlobalPosition - Position * 1.5f );
+					InstantiateBazooka( PlayerController.GlobalPosition - Position * 1.5f, PlayerIndex );
 					AttackTimer1 = 0.3f;
 				}
 
@@ -69,10 +69,10 @@ public partial class Enemy3Controller : EnemyController
 				
 				break;
 			case EState.Grenade:
-				if ( AttackTimer2 <= 0 )
+				if ( AttackTimer2 <= 0.0f )
 				{
 					CurrentWeapon = EWeapon.Grenade;
-					InstantiateGrenade( PlayerController.GlobalPosition - Position );
+					InstantiateGrenade( PlayerController.GlobalPosition - Position, PlayerIndex );
 					ShouldJump   = _randomNumberGenerator.RandiRange( 0, 2 ) == 0;
 					AttackTimer1 = _randomNumberGenerator.RandfRange( 0.5f, 1.2f );
 					AttackTimer2 = 0.1f;
