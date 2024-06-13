@@ -58,23 +58,9 @@ public partial class Collision : Node
 		return normal.Normalized();
 	}
 
-	public void Explosion( Vector2 pos, int radius )
+	public void Explosion( Vector2 pixel )
 	{
-		// Removes collision in sphere shape
-		for ( int x = -radius; x <= radius; x++ )
-		{
-			for ( int y = -radius; y <= radius; y++ )
-			{
-				if ( new Vector2( x, y ).Length() > radius )
-					continue;
-
-				Vector2 pixel = pos + new Vector2( x, y );
-				if ( pixel.X < 0 || pixel.X >= mapWidth || pixel.Y < 0 || pixel.Y >= mapHeight )
-					continue;
-
-				// Set to air
-				collision[ ( int )pixel.X ][ ( int )pixel.Y ] = 0;
-			}
-		}
+		// Set to air
+		collision[ ( int )pixel.X ][ ( int )pixel.Y ] = 0;
 	}
 }

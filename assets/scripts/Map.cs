@@ -68,8 +68,8 @@ public partial class Map : Node2D
 		
 		Image fgImage = _fg.Texture.GetImage();
 		Image bgImage = _bg.Texture.GetImage();
-		
-		GetNode<Collision>( "Collision" ).Explosion( pos, radius );
+
+		Collision collision = GetNode<Collision>( "Collision" );
 		
 		for ( int x = -radius; x <= radius; x++ )
 		{
@@ -77,12 +77,14 @@ public partial class Map : Node2D
 			{
 				if ( new Vector2( x, y ).Length() > radius )
 					continue;
-
+				
 				Vector2 pixel = pos + new Vector2( x, y );
 				if ( pixel.X < 0 || pixel.X >= fgImage.GetWidth() )
 					continue;
 				if ( pixel.Y < 0 || pixel.Y >= fgImage.GetHeight() )
 					continue;
+				
+				collision.Explosion( pixel );
 
 				// Sample from toher image and make abit darker so it gives a cool effect
 				Color colot = bgImage.GetPixel( (int)pixel.X, (int)pixel.Y );
