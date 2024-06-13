@@ -59,7 +59,7 @@ public partial class InstantiateControllers : Node
 				enemy1Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
 				enemy1Instance.AddToCamera   = true;
 				enemy1Instance.PlayerIndex   = 1;
-				enemy1Instance.Health        = 5;
+				enemy1Instance.Health        = 3;
 				enemy1Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 			case 1:
@@ -70,7 +70,7 @@ public partial class InstantiateControllers : Node
 				enemy2Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Golden.png" );
 				enemy2Instance.AddToCamera   = true;
 				enemy2Instance.PlayerIndex   = 1;
-				enemy2Instance.Health        = 5;
+				enemy2Instance.Health        = 4;
 				enemy2Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 			case 2:
@@ -81,7 +81,7 @@ public partial class InstantiateControllers : Node
 				enemy3Instance.PlayerTexture = GD.Load<CompressedTexture2D>( "res://assets/sprites/Dog_Demon.png" );
 				enemy3Instance.AddToCamera   = true;
 				enemy3Instance.PlayerIndex   = 1;
-				enemy3Instance.Health        = 10;
+				enemy3Instance.Health        = 6;
 				enemy3Instance.Position      = new Vector2( 900.0f, 100.0f );
 				break;
 		}
