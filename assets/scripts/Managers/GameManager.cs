@@ -24,6 +24,13 @@ public partial class GameManager : Node
 		{
 			UseMouse = !UseMouse;
 		}
+		if ( @event is InputEventKey { Keycode: Key.Escape, Pressed: true } )
+		{
+			LoadMap( "res://main_menu.tscn" );
+			Player1Score = 0;
+			Player2Score = 0;
+			CurrentRound = 0;
+		}
 	}
 
 	public void PlayerDeath( int playerIndex )
@@ -50,17 +57,17 @@ public partial class GameManager : Node
 
 			if ( Player2Score == 3 )
 			{
-				ReloadMap( "res://main_menu.tscn" );
+				LoadMap( "res://main_menu.tscn" );
 				Player1Score = 0;
 				Player2Score = 0;
 			}
 		}
 
 		CurrentRound++;
-		ReloadMap( "res://main.tscn" );
+		LoadMap( "res://main.tscn" );
 		
 	}
-	private void ReloadMap( string path )
+	private void LoadMap( string path )
 	{
 		GetTree().ChangeSceneToPacked( ResourceLoader.Load<PackedScene>( path ) );
 	}
