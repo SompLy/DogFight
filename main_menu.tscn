@@ -1,8 +1,10 @@
-[gd_scene load_steps=56 format=3 uid="uid://la1a7cmnd1fg"]
+[gd_scene load_steps=58 format=3 uid="uid://la1a7cmnd1fg"]
 
 [ext_resource type="Script" path="res://assets/scripts/Menu.cs" id="1_pa80j"]
 [ext_resource type="Texture2D" uid="uid://byyrlgvpg4kov" path="res://assets/sprites/Dog-Fight-logo.png" id="2_ud38u"]
 [ext_resource type="Texture2D" uid="uid://cxvcew2o77nxs" path="res://assets/sprites/Dog-Fight-logo-shit-niklas.png" id="3_iwy01"]
+[ext_resource type="Texture2D" uid="uid://dnlvmsvr5g8e2" path="res://assets/sprites/Misc_Throphy_DF.png" id="3_obigm"]
+[ext_resource type="Texture2D" uid="uid://b5kkwj2bidat4" path="res://assets/sprites/Misc_Throphy.png" id="4_5874w"]
 [ext_resource type="Texture2D" uid="uid://dthyelyce1f1t" path="res://assets/sprites/Niklas/0 -25.png" id="4_wrhhu"]
 [ext_resource type="Texture2D" uid="uid://bjqgkqioy0po1" path="res://assets/sprites/Niklas/1 -24.png" id="5_heb2i"]
 [ext_resource type="Texture2D" uid="uid://digq4u4kv4pby" path="res://assets/sprites/Niklas/2 -23.png" id="6_jh7sh"]
@@ -377,6 +379,16 @@ position = Vector2(958.25, 406.5)
 scale = Vector2(1.546, 1.11905)
 texture = ExtResource("2_ud38u")
 
+[node name="Trophy DF" type="Sprite2D" parent="."]
+position = Vector2(1153, 852)
+scale = Vector2(15.8333, 16.1789)
+texture = ExtResource("3_obigm")
+
+[node name="Trophy" type="Sprite2D" parent="."]
+position = Vector2(831, 854)
+scale = Vector2(15.6667, 16.2895)
+texture = ExtResource("4_5874w")
+
 [node name="Dog-fight-logo-shit-niklas" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(575.5, 324)
@@ -413,9 +425,9 @@ anchors_preset = -1
 anchor_top = 0.005
 anchor_bottom = 0.005
 offset_left = 88.0
-offset_top = 759.76
+offset_top = 836.6
 offset_right = 554.0
-offset_bottom = 988.76
+offset_bottom = 988.6
 grow_vertical = 0
 alignment = 1
 
@@ -435,14 +447,6 @@ theme_override_font_sizes/font_size = 29
 text = "Player vs Computer Tournament
 "
 
-[node name="Player vs AI" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-theme_type_variation = &"FlatButton"
-theme_override_font_sizes/font_size = 29
-text = "Player vs Computer"
-
 [node name="Exit Game" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -452,7 +456,19 @@ theme_override_font_sizes/font_size = 29
 text = "Exit Game
 "
 
+[node name="Exit Game" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1311.0
+offset_top = 946.0
+offset_right = 1818.0
+offset_bottom = 994.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 29
+text = "Computer game by Edvin Öhrström"
+
 [connection signal="pressed" from="VBoxContainer/Player vs Player" to="." method="_on_player_vs_player_pressed"]
 [connection signal="pressed" from="VBoxContainer/Player vs AI Tournament" to="." method="_on_player_vs_ai_tournament_pressed"]
-[connection signal="pressed" from="VBoxContainer/Player vs AI" to="." method="_on_player_vs_ai_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="Exit Game" to="." method="_on_exit_game_pressed"]
