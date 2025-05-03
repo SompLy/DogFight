@@ -60,7 +60,7 @@ public partial class Enemy3Controller : EnemyController
 				// Set state
 				_state = _inAttackRangeLong ? EState.BazookaLong : EState.BazookaShort;
 
-				if ( _randomNumberGenerator.RandiRange( 0, 5000 ) == 0 )
+				if ( _randomNumberGenerator.RandiRange( 0, 50 ) == 0 )
 				{
 					Walk      = 0;
 					_state    = EState.BazookaSpin;

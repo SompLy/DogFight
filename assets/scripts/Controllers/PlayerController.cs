@@ -63,7 +63,7 @@ public partial class PlayerController : Controller
 					if ( AttackTimer1 <= 0 )
 					{
 						InstantiateBazooka( ( DirectionSprite.GlobalPosition - RotationPoint.GlobalPosition ) *
-						                    AttackPowerBazooka * new Vector2( 3.0f, 0.0f ), PlayerIndex);
+											AttackPowerBazooka * new Vector2( 3.0f, 0.0f ), PlayerIndex);
 						AttackTimer1 = _bazookaCooldown;
 					}
 					break;
@@ -118,7 +118,7 @@ public partial class PlayerController : Controller
 		}
 
 		Walk = Convert.ToInt32( Input.GetActionStrength( Controls.MoveRight ) ) -
-		       Convert.ToInt32( Input.GetActionStrength( Controls.MoveLeft ) );
+			   Convert.ToInt32( Input.GetActionStrength( Controls.MoveLeft ) );
 		
 		base._PhysicsProcess( delta );
 	}
